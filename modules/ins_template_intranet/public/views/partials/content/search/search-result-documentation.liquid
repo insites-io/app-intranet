@@ -1,0 +1,60 @@
+<div class="blocks-sc-1col-05 wrapper bg-color-ui-01 results-docu">
+  <div class="spacer xxxx-large"></div>
+  <div class="grid-container">
+    <div class="grid-x gutter grid-padding-x align-center">
+      <div class="large-9 medium-12 small-12 cell">
+        <h2>Documentation</h2>
+        <div class="spacer x-large"></div>
+        <div class="articles-container">
+
+          {%- assign page = context.params.dp | default: 1 | plus: 0 -%}
+          {%- assign per_page = context.params.per_page | default: 5 | plus: 0 -%}
+
+          {%- if documentation_search_result.results.size == 0 -%}
+          <!-- No results -->
+          {%- if category != blank -%}
+          <p>No results found for {{ category }}.</p>
+          {%- else -%}
+          <p>No results found within Documentation.</p>
+          {%- endif -%}
+          <!-- End no results -->
+          {%- else -%}
+          <!-- has results -->
+
+          {%- for docs in documentation_search_result.results -%}
+          {% assign parent_slug = docs.table | remove: "modules/ins_template_intranet/" | replace: "_", "-" %}
+          <!-- article -->
+          <div class="article-item">
+            <p class="subhead-2 cat-section">{{ docs.section }}</p>
+            <div class="spacer small"></div>
+            <a href="/{{ parent_slug }}/{{ docs.slug }}">
+              <h3>{{ docs.title }}
+              </h3>
+            </a>
+            <div class="spacer small"></div>
+            <p class="body-paragraph">
+              Published on {{ docs.published_date | strftime: '%b %d, %Y', 'Sydney' }}
+            </p>
+          </div>
+          <!-- /article -->
+          {%- endfor -%}
+          <!-- pagination -->
+          <div class="spacer xxxx-large"></div>
+          <div class="pagination-holder">
+            {%- include 'modules/ins_template_intranet/content/pagination/category_pagination',
+            data: documentation_search_result,
+            per_page: per_page,
+            type: "search_documentation" -%}
+            <!-- /pagination -->
+
+            <!-- /End has results -->
+            {%- endif -%}
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

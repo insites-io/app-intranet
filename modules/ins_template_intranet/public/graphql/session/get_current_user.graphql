@@ -1,0 +1,13 @@
+{
+  current_user {
+    id
+    first_name
+    last_name
+    email
+    updated_at
+    created_at
+    administrator_details: profiles(profile_type: "modules/insites_core/insites_administrator") {
+        is_enabled: property(name: "is_enabled")
+    }
+  }
+}

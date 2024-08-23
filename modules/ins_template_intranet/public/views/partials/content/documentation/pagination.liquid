@@ -1,0 +1,69 @@
+{%- assign params = "" | split: "," -%}
+{%- assign slug = "" -%}
+
+{%- if context.params.slug != "documentation" -%}
+{%- assign slug = context.params.slug | prepend: "/" -%}
+{%- endif -%}
+
+{% for param in context.location.search %}
+{%- if param[0] != "page" -%}
+{%- assign str = param[0] | append: '=' | append: param[1] -%}
+{%- assign params = params | add_to_array: str -%}
+{%- endif -%}
+{% endfor %}
+
+{%- assign params = params | join: "&" -%}
+{%- if params != blank -%}
+{%- assign params = params | prepend: "&" -%}
+{%- endif -%}
+
+<div>
+
+  {%- assign pg_per_page = context.params.per_page | plus: 0 | default: 9 -%}
+  <label for="documentation-page-size-select">Items per page:</label>
+  <ins-select id="documentation-page-size-select" placeholder="Select Size" small>
+    <ins-select-option label="9" value="9" {% if pg_per_page <=9 %}default{% endif %}></ins-select-option>
+    <ins-select-option label="15" value="15" {% if pg_per_page> 9 and pg_per_page <= 15 %}default{% endif %}>
+    </ins-select-option>
+    <ins-select-option label="30" value="30" {% if pg_per_page> 15 and pg_per_page <= 30 %}default{% endif %}>
+    </ins-select-option>
+  </ins-select>
+
+
+  {% assign page_size = context.params.per_page | default: 9 | plus: 0 %}
+
+  {%- assign tmp_start_count = data.items.current_page | times: page_size -%}
+  {%- assign tmp_start_minus = page_size | minus: 1 -%}
+  {%- assign tmp_start = tmp_start_count | minus: tmp_start_minus -%}
+  {%- assign tmp_end_count = data.items.current_page | times: page_size -%}
+
+  {%- if tmp_end_count > data.items.total_entries -%}
+  {%- assign end_count = data.items.total_entries -%}
+  {%- else -%}
+  {%- assign end_count = tmp_end_count -%}
+  {%- endif -%}
+
+  <span class="from-total-pages">
+    {{ tmp_start }}-{{ end_count }} of {{ data.items.total_entries }}
+  </span>
+
+  {%- if data.items.has_previous_page == true -%}
+
+  <a class="color-font-head" href="{{ context.params.slug }}?page={{ data.items.current_page | minus: 1 }}{{ params }}">
+
+    <span class="icon-chevron-left"></span>
+  </a>
+  {%- else -%}
+  <span class="icon-chevron-left"></span>
+  {%- endif -%}
+
+  {%- if data.items.has_next_page == true -%}
+  <a class="color-font-head" href="{{ context.params.slug }}?page={{ data.items.current_page | plus: 1 }}{{ params }}">
+
+    <span class="icon-chevron-right"></span>
+  </a>
+  {%- else -%}
+  <span class="icon-chevron-right"></span>
+  {%- endif -%}
+
+</div>

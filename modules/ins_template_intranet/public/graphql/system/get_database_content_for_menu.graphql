@@ -1,0 +1,43 @@
+query get_database_content_for_menu(
+	$page: Int = 1,
+	$size: Int = 1000,
+  $database_name: String
+) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      deleted_at: {
+        exists: false
+      },
+      model_schema_name: {
+        value: $database_name
+      },
+      properties: [
+        { name: "status", value: "Published" },
+        { name: "parent_category", exists: false }
+      ],
+    },
+    sort: [
+      { 
+        properties: {
+          name: "order",
+          order: ASC
+        }
+      }
+    ]
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      id
+      parent_category: property(name: "parent_category")
+      title: property(name: "title")
+      slug: property(name: "slug")
+    }
+  }
+}

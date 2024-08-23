@@ -1,0 +1,31 @@
+query get_content_layout($database_name: Any!, $layout: Any!) {
+    items: admin_liquid_partials(
+        filter: {
+            metadata: {
+                attributes: [
+                    {
+                        key: "database_name"
+                        value: $database_name
+                    }
+                    {
+                        key: "layout"
+                        value: $layout
+                    }
+                ]
+            }
+        }
+        page: 1
+        per_page: 100
+    ) {
+        results {
+            id
+            body
+            format
+            path
+            physical_file_path
+            metadata
+            created_at
+            updated_at
+        }
+    }
+}

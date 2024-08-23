@@ -1,0 +1,25 @@
+query get_crumb (
+  $slug: String,
+  $parent_category: ID
+) {
+  items: models(
+    per_page: 1
+    filter: {
+      deleted_at: { exists: false }
+      id: {
+        value: $parent_category 
+      }
+      properties: [
+        { name: "slug", value: $slug }
+      ]
+    }
+  ) {
+    results {
+      id
+      slug: property(name: "slug")
+      title: property(name: "title")
+      post_title: property(name: "post_title")
+      parent_category: property(name: "parent_category")
+    }
+  }
+}

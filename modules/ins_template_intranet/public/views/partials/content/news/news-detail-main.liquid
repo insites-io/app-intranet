@@ -1,0 +1,125 @@
+{%- comment -%}
+News: Details view
+{%- endcomment -%}
+{%- comment -%} Checking if detail can be display {%- endcomment -%}
+{%- assign date_now = 'today' | to_time -%}
+{%- assign item_status = item.status | downcase -%}
+{%- assign is_displayed = false -%}
+
+{%- assign is_admin = false -%}
+{% graphql data = 'modules/insites_core/insites_admin/sessions/current_user' %}
+{% if data.current_user.administrator.is_enabled == true or data.current_user.administrator.is_enabled == "true" %}
+{%- assign is_admin = true -%}
+{% endif %}
+
+
+{%- if item_status == 'published' and date_now >= item.published_date -%}
+{%- assign is_displayed = true -%}
+{%- elsif item_status == 'published' and date_now <= item.published_date and is_admin -%} {%- assign is_displayed=true
+  -%} {%- elsif item_status=='draft' and is_admin -%} {%- assign is_displayed=true -%} {%- endif -%} {%- comment -%}
+  Checking if detail can be display {%- endcomment -%} {%- comment -%}Used for checking if page has OG Image (if not,
+  use the default OG Image){%- endcomment -%} {%- content_for 'has_og_image' -%}{{
+  item.image.version["OG-Image-1200x630"] }}{%- endcontent_for -%} {%- if context.environment=="staging" -%} <!-- start
+  partial: News details page -->
+  {%- endif -%}
+
+  {%- if is_displayed -%}
+  <div class="news-detail wrapper">
+    <div class="news grid-container main-container" data-test="page-news-detail">
+      <div class="spacer xxxx-large"></div>
+      <div class="grid-x grid-padding-x go-back-nav">
+        <div class="large-12 cell">
+
+          {%- assign previous_path = context.headers.HTTP_REFERER | split: '/' -%}
+          {%- assign prev_url = previous_path[3] | default: "" -%}
+
+          {% if prev_url == blank and previous_path[2] != blank %}
+            <a class="button-default color-font-head back-link" href="/">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Homepage
+            </a>
+          {% elsif previous_path[2] == blank %}
+            <a class="button-default color-font-head back-link" href="/news">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Company News
+            </a>
+          {% else %}
+            <a class="button-default color-font-head back-link" href="/news">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Company News
+            </a>
+          {% endif %}
+
+
+        </div>
+      </div>
+      <div class="spacer xx-large"></div>
+
+      <article class="news-post grid-x">
+        <div class="large-12 cell">
+          <div class="news-heading">
+            {%- if item.category -%}
+
+            <!-- tag setter -->
+            {%- assign news_detail_category = item.category | downcase -%}
+            {%- case news_detail_category -%}
+            {% when 'company' %}
+            {%- assign tag_class = 'tag-company' -%}
+            {% when 'hr' %}
+            {%- assign tag_class = 'tag-hr' -%}
+            {% when 'location 1' %}
+            {%- assign tag_class = 'tag-location-1' -%}
+            {% when 'location 2' %}
+            {%- assign tag_class = 'tag-location-2' -%}
+            {% when 'marketing' %}
+            {%- assign tag_class = 'tag-marketing' -%}
+            {% when 'sales' %}
+            {%- assign tag_class = 'tag-sales' -%}
+            {% when 'support' %}
+            {%- assign tag_class = 'tag-support' -%}
+            {% when 'design' %}
+            {%- assign tag_class = 'tag-design' -%}
+            {% when 'delivery' %}
+            {%- assign tag_class = 'tag-delivery' -%}
+            {% when 'developers' %}
+            {%- assign tag_class = 'tag-developers' -%}
+            {%- endcase -%}
+
+            <!-- /tag setter -->
+
+            <ins-tag class="capitalize {{ tag_class }}" icon="icon-tag1" label="{{ item.category }}">
+            </ins-tag>
+
+
+            <div class="spacer small"></div>
+            {%- endif -%}
+            <h1>{{ item.post_title }}</h1>
+            <div class="spacer small"></div>
+            <p class="subhead-2 color-font-sub">
+              {%- assign auth = "" -%}
+              {%- if item.author != blank -%}
+              {%- assign auth = item.author | prepend: "by " -%}
+              {%- endif -%}
+              Published on {{ item.published_date | strftime: '%b %d, %Y', 'Sydney' }} {{ auth }}
+            </p>
+            <div class="spacer x-large"></div>
+          </div>
+
+          <div class="news-img">
+            <img src="{{ item.image.url | replace: ' ', '%20' }}" alt="{{ item.short_text }}" />
+            <div class="spacer xxxx-large"></div>
+          </div>
+
+          <div class="content-block-holder dynamic-content inner-wrap markdown-block" id="dynamic-content-wrapper">
+            {{ item.content_block_1 | markdown }}
+            {%- if item.content_block_2 -%}
+            <div class="spacer"></div>
+            {{ item.content_block_2 | markdown }}
+            {%- endif -%}
+          </div>
+        </div>
+      </article>
+      <div class="spacer xxxx-large"></div>
+    </div>
+  </div>
+  <hr>
+  {%- else -%}
+  {% redirect_to '/404' %}
+  {%- endif -%}

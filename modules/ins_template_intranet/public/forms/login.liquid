@@ -1,0 +1,187 @@
+---
+name: login
+resource: Session
+fields:
+  return_to:
+    property_options:
+      readonly: true
+      virtual: true
+redirect_to: /
+## callback_actions: >
+##   {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
+##   {% graphql res = "modules/insites_core/insites_admin/sessions/insites_log_last_login_date",
+##     id: form.id,
+##     date: now
+##   %}
+---
+<style>
+    .error-submit-sign-in { 
+        font-size: 14px;
+        display: none;
+    }
+    .login-page img {
+        margin: 0 auto;
+        max-width: 228px;
+        width: 100%;
+    }
+    @media screen and (max-width: 639px) {
+        .login-page img {
+            max-width: 200px;
+        }
+    }
+    .login-wrap {
+        background: #FFFFFF;
+        padding: 40px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+    }
+    .full-btn button {
+        width: 100%;
+    }
+    @media screen and (max-width: 1024px) {
+        .login-wrap { padding: 24px; }
+    }
+
+    .wrapper {
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: var(--container-padding-xx-large, 24px);
+        padding-right: var(--container-padding-xx-large, 24px);
+    }
+    .wrapper, .grid-container {
+        max-width: var(--container-max-width, 1232px);
+        position: relative;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .wrapper .wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media screen and (min-width: 1440px) {
+        .wrapper {
+            padding-left: var(--container-padding-xx-large, 24px);
+            padding-right: var(--container-padding-xx-large, 24px);
+        }
+    }
+
+    @media screen and (min-width: 1200px) and (max-width: 1439px) {
+        .wrapper {
+            padding-left: var(--container-padding-x-large, 24px);
+            padding-right: var(--container-padding-x-large, 24px);
+        }
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1199px) {
+        .wrapper {
+            padding-left: var(--container-padding-large, 24px);
+            padding-right: var(--container-padding-large, 24px);
+        }
+    }
+
+
+    @media screen and (min-width: 640px) and (max-width: 1023px) {
+        .wrapper {
+            padding-left: var(--container-padding-medium, 32px);
+            padding-right: var(--container-padding-medium, 32px);
+        }
+
+    }
+
+    @media screen and (max-width: 639px) {
+        .wrapper {
+            padding-left: var(--container-padding-small, 24px);
+            padding-right: var(--container-padding-small, 24px);
+        }
+        .spacer.section { padding-bottom: 80px; }
+        .spacer.xxx-large,
+        .spacer.xxxx-large { padding-bottom: 40px; }
+    }
+</style>
+
+<pre id="adminSignInFormConfig" style="display: none">
+  {{form_builder.errors | json}}
+</pre>
+
+<div class="text-center">
+    <h2>This page is password protected</h2>
+    <div class="spacer x-small"></div>
+    <p>Enter the password below to view.</p>
+    <div class="spacer large"></div>
+</div>
+
+<form id="adminSignIn"
+  accept-charset="UTF-8"
+  name="{{form_builder.system_fields.form_configuration_name}}"
+  action="/api/sessions" method="POST"
+  data-abide data-live-validate="true" novalidate>
+
+  <input name="utf8" value="{{form_builder.system_fields.utf8}}" type="hidden">
+  <input name="authenticity_token" value="{{form_builder.system_fields.authenticity_token}}" type="hidden">
+  <input name="form_configuration_name" value="{{form_builder.system_fields.form_configuration_name}}" type="hidden">
+  <input name="page_id" value="{{form_builder.system_fields.page_id}}" type="hidden">
+  <input name="slug2" value="{{form_builder.system_fields.slug2}}" type="hidden">
+  <input name="slug3" value="{{form_builder.system_fields.slug3}}" type="hidden">
+  <input name="resource_id" value="{{form_builder.system_fields.resource_id}}" type="hidden">
+  <input name="parent_resource_id" value="{{form_builder.system_fields.parent_resource_id}}" type="hidden">
+  <input name="parent_resource_class" value="{{form_builder.system_fields.parent_resource_class}}" type="hidden">
+  <input name="form[return_to]" value="{{ context.params.return_to }}" type="hidden" id="return_to_url">
+
+    <div class="grid-x">
+      <div class="large-12 cell">
+          <ins-input class="string email required" placeholder="Email" label="Email" field="email" name="form[email]" id="form_email" required tabindex="1"></ins-input>
+      </div>
+      <div class="large-12 cell">
+          <ins-input class="password required" placeholder="Password" label="Password" field="password" name="form[password]" id="form_password"  tabindex="2" required></ins-input>
+      </div>
+      {% comment %} <div class="large-12 cell">
+          <div class="large-6 cell text-right">
+            <a class="recover-password-link"
+              href="/admin/recover-password" tabindex="4">
+              Forgot your password?
+            </a>
+            <div class="spacer small"></div>
+          </div>
+      </div> {% endcomment %}
+      <div class="large-12 cell">
+        <div class="text-center">
+            <ins-button type="submit" label="Enter" id="submitButton" solid size="large" class="full-btn" color="pink"></ins-button>
+        </div>
+        <div class="spacer x-small"></div>
+        <div class="error-submit-sign-in error-message">Oops! That email / password combination is not valid.</div>
+      </div>
+    </div>
+
+</form>
+<script>
+    var submitButtonEl = document.getElementById('submitButton');
+    var formErrors = JSON.parse(document.getElementById('adminSignInFormConfig').innerText);
+    var route = location.href.includes("#") ? encodeURIComponent("#" + location.href.split("#")[1]) : ""
+    var returnToUrlInput = document.getElementById('return_to_url');
+    
+    returnToUrlInput.value = returnToUrlInput.value + route
+
+    submitButtonEl.addEventListener('click', function(){
+      submitButtonEl.loading = true;
+      var email_field = document.getElementById('form_email'),
+        password_field = document.getElementById('form_password'),
+        hasError = false;
+
+      if (email_field.value && password_field.value)  {
+        submitButtonEl.loading = true;
+      } else {
+        submitButtonEl.loading = false;
+      }
+      
+    });
+
+    function hasClass(element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    }
+
+    if (formErrors.password || formErrors.email) {
+      document.querySelector('.error-submit-sign-in').classList.add('is-visible');
+    }
+</script>

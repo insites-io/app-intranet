@@ -1,0 +1,11 @@
+---
+name: only_allowed_if_ins_administrator
+redirect_to: 401
+flash_alert: Please login as administrator to access this page.
+---
+
+{% graphql data = 'modules/ins_template_intranet/session/get_current_user' %}
+{% if data.current_user.administrator_details[0].is_enabled == true or data.current_user.administrator_details[0].is_enabled == "true" %}
+  true
+{% endif %}
+

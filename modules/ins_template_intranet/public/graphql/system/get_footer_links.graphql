@@ -1,0 +1,43 @@
+query get_footer_links(
+	$page: Int = 1,
+	$size: Int = 1000,
+  $database_name: String
+) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      deleted_at: {
+        exists: false
+      },
+      model_schema_name: {
+        value: $database_name
+      },
+      properties: [
+        { name: "status", value: "Published" },
+        { name: "show_in_footer", value_boolean: true }
+      ],
+    },
+    sort: [
+      { 
+        properties: {
+          name: "order",
+          order: ASC
+        }
+      }
+    ]
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      id
+    	parent_category: property(name: "parent_category")
+      slug: property(name: "slug")
+      title: property(name: "title")
+    }
+  }
+}

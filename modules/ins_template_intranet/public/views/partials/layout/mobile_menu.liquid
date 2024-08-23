@@ -1,0 +1,43 @@
+<div class="navigation-04 drawer-holder">
+  <ins-drawer no-padding id="mobile-menu" show-header=false position="right">
+    <div>
+      <ul class="vertical menu">
+        <!-- normal list -->
+        <li>
+          <a href="location-1" {% if context.params.slug=='location-1' %}class="active" {%- endif -%}>
+            Location 1
+          </a>
+        </li>
+        <!-- /normal list -->
+        <!-- normal list -->
+        <li>
+          <a href="location-2" {% if context.params.slug=='location-2' %}class="active" {%- endif -%}>
+            Location 2
+          </a>
+        </li>
+        <!-- /normal list -->
+        <!-- normal list -->
+        <li>
+          <a href="/news" {% if context.params.slug=='news' %}class="active" {%- endif -%}>
+            News
+          </a>
+        </li>
+        <!-- /normal list -->
+        <!-- normal list -->
+        <li>
+          <a href="/faqs" {% if context.params.slug=='faqs' %}class="active" {%- endif -%}>
+            FAQs
+          </a>
+        </li>
+        <!-- /normal list -->
+        <!-- normal list -->
+        <li>
+          <a href="/timeline" {% if context.params.slug=='timeline' %}class="active" {%- endif -%}>
+            Timeline
+          </a>
+        </li>
+        <!-- /normal list -->
+      </ul>
+    </div>
+  </ins-drawer>
+</div>

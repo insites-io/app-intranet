@@ -1,0 +1,144 @@
+<div>
+  {%- if context.params.slug == "search" -%}
+      {%- assign per_pages = "[5,10,15]" | parse_json -%}
+  {%- else -%}
+      {%- assign per_pages = "[10,20,50]" | parse_json -%}
+      <label for="per_page">Items per page:</label>
+      <select
+          id="per-page-select"
+          name="per_page"
+          data-category="{{ context.params.category }}">
+          {%- for item in per_pages -%}
+              <option value="{{ item }}"
+                  {% if item == per_page %}selected{% endif %}>
+                  {{ item }}
+              </option>
+          {%- endfor -%}
+      </select>
+  {%- endif -%}
+
+  {%- assign to = data.per_page | times: data.current_page -%}
+  {%- assign from = to | minus: data.per_page | plus: 1 -%}
+  <span>
+      {{ from }}-{{ to }} of {{ data.total_entries }}
+  </span>
+  
+  {%- if data.has_previous_page == true -%}
+      
+      {%- if type == "search_news" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+              {%- if context.params.dp -%}
+                  &dp={{ context.params.dp }}
+              {%- endif -%}
+              {%- if context.params.fp -%}
+                  &fp={{ context.params.fp }}
+              {%- endif -%}
+              &ap={{ data.current_page | minus: 1 }}"
+          >
+      {%- elsif type =="search_faqs" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+              {%- if context.params.dp -%}
+                  &dp={{ context.params.dp }}
+              {%- endif -%}
+                  &fp={{ data.current_page | minus: 1 }}
+              {%- if context.params.ap -%}
+                  &ap={{ context.params.ap }}
+              {%- endif -%}
+              "
+          >
+      {%- elsif type == "search_documentation" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+                  &dp={{ data.current_page | minus: 1 }}
+              {%- if context.params.ap -%}
+                  &ap={{ context.params.ap }}
+              {%- endif -%}
+              {%- if context.params.fp -%}
+                  &fp={{ context.params.fp }}
+              {%- endif -%}
+              "
+          >
+      {%- else -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?
+              {%- if context.params.category -%}
+                  category={{ context.params.category }}&
+              {%- endif -%}
+              page={{ data.current_page | minus: 1 }}&per_page={{ per_page }}"
+          >
+      {%- endif -%}
+          <span class="icon-chevron-left"></span>
+      </a>
+  {%- else -%}
+      <span class="icon-chevron-left"></span>
+  {%- endif -%}
+
+  {%- if data.has_next_page == true -%}
+      {%- if type == "search_news" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+              {%- if context.params.dp -%}
+                  &dp={{ context.params.dp }}
+              {%- endif -%}
+              {%- if context.params.fp -%}
+                  &fp={{ context.params.fp }}
+              {%- endif -%}
+              &ap={{ data.current_page | plus: 1 }}"
+          >
+      {%- elsif type =="search_faqs" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+              {%- if context.params.dp -%}
+                  &dp={{ context.params.dp }}
+              {%- endif -%}
+                  &fp={{ data.current_page | plus: 1 }}
+              {%- if context.params.ap -%}
+                  &ap={{ context.params.ap }}
+              {%- endif -%}"
+          >
+      {%- elsif type =="search_documentation" -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?keyword={{context.params.keyword}}&docu_category={{context.params.docu_category}}
+              {%- if context.params.category -%}
+                  &category={{ context.params.category }}
+              {%- endif -%}
+                  &dp={{ data.current_page | plus: 1 }}
+              {%- if context.params.ap -%}
+                  &ap={{ context.params.ap }}
+              {%- endif -%}
+              {%- if context.params.fp -%}
+                  &fp={{ context.params.fp }}
+              {%- endif -%}"
+          >
+      {%- else -%}
+          <a class="color-font-head"
+              href="/{{ context.page.slug }}?
+              {%- if context.params.category -%}
+                  category={{ context.params.category }}&
+              {%- endif -%}
+              page={{ data.current_page | plus: 1 }}&per_page={{ per_page }}"
+          >
+      {%- endif -%}
+          <span class="icon-chevron-right"></span>
+      </a>
+  {%- else -%}
+      <span class="icon-chevron-right"></span>
+  {%- endif -%}
+</div>

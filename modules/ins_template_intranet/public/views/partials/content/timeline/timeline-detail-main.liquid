@@ -1,0 +1,84 @@
+{%- assign date_now = 'today' | to_time -%}
+{%- assign item_status = item.status | downcase -%}
+{%- assign is_displayed = false -%}
+
+{%- assign is_admin = false -%}
+{% graphql data = 'modules/insites_core/insites_admin/sessions/current_user' %}
+{% if data.current_user.administrator.is_enabled == true or data.current_user.administrator.is_enabled == "true" %}
+{%- assign is_admin = true -%}
+{% endif %}
+
+{%- if item_status == 'published' and date_now >= item.published_date -%}
+{%- assign is_displayed = true -%}
+{%- elsif item_status == 'published' and date_now <= item.published_date and is_admin -%} {%- assign is_displayed=true
+  -%} {%- elsif item_status=='draft' and is_admin -%} {%- assign is_displayed=true -%} {%- endif -%} 
+  {%- comment -%} Checking if detail can be display {%- endcomment -%} 
+  {%- comment -%}Used for checking if page has OG Image (if not, use the default OG Image){%- endcomment -%} 
+  {%- content_for 'has_og_image' -%}{{
+  item.image.version["OG-Image-1200x630"] }} {%- endcontent_for -%} {%- if context.environment=="staging" -%} 
+  <!-- start partial: Timeline details page -->
+  {%- endif -%}
+
+  {%- if is_displayed -%}
+  <div class="timeline-detail wrapper">
+    <div class="news grid-container main-container" data-test="page-news-detail">
+      <div class="spacer xxxx-large"></div>
+      <div class="grid-x grid-padding-x go-back-nav">
+        <div class="large-12 cell">
+         
+          {%- assign previous_path = context.headers.HTTP_REFERER | split: '/' -%}
+          {%- assign prev_url = previous_path[3] | default: "" -%}
+
+          {% if prev_url == blank and previous_path[2] != blank %}
+            <a class="button-default color-font-head back-link" href="/">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Homepage
+            </a>
+          {% elsif previous_path[2] == blank %}
+            <a class="button-default color-font-head back-link" href="/timeline">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Timeline
+            </a>
+          {% else %}
+            <a class="button-default color-font-head back-link" href="/timeline">
+              <i class="icon-angle-left"></i>&nbsp;&nbsp; Go Back to Timeline
+            </a>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="spacer xx-large"></div>
+
+      <article class="news-post grid-x">
+        <div class="large-12 cell">
+          <div class="news-heading">
+            {%- if item.category_tag -%}
+
+            {% for category_name in item.category_tag %}
+            <ins-tag class="capitalize" label="{{ category_name }}" font-color="#1e86e3" background-color="#1e86e31a">
+            </ins-tag>
+            {% endfor %}
+
+            <div class="spacer small"></div>
+            {%- endif -%}
+            <h1>{{ item.title }}</h1>
+            <div class="spacer small"></div>
+            <p class="subhead-2 color-font-sub">
+              {%- assign auth = "" -%}
+              {%- if item.author != blank -%}
+              {%- assign auth = item.author | prepend: "by " -%}
+              {%- endif -%}
+              Published on {{ item.published_date | strftime: '%b %d, %Y', 'Sydney' }} {{ auth }}
+            </p>
+            <div class="spacer x-large"></div>
+          </div>
+
+          <div class="content-block-holder dynamic-content inner-wrap markdown-block" id="dynamic-content-wrapper">
+            {{ item.detailed_content | markdown }}
+          </div>
+        </div>
+      </article>
+      <div class="spacer xxxx-large"></div>
+    </div>
+  </div>
+  {%- else -%}
+  {% redirect_to '/404' %}
+  {%- endif -%}

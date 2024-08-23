@@ -1,0 +1,59 @@
+query search_keyword_news (
+  $id: ID,
+  $page: Int = 1,
+  $size: Int = 5,
+  $keyword: String,
+  $schema: String,
+  $status: String
+) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      properties: [
+        { name: "status", value: $status }                  
+      ],
+      id: { 
+        value: $id
+      },
+      deleted_at: { 
+        exists: false
+      },
+      model_schema_name: { 
+        value: $schema 
+      },
+      or: [
+        {
+          properties: [
+            { 
+              name: "post_title",
+              contains: $keyword
+            }
+          ]
+        },
+        {
+          properties: [
+            { 
+              name: "short_text",
+              contains: $keyword
+            }
+          ]
+        }
+      ]
+    }
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      id 
+      category: property(name: "category")
+      slug: property(name: "slug")
+      post_title: property(name: "post_title")
+      short_text: property(name: "short_text")
+    }
+  }
+}

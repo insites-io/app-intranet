@@ -1,0 +1,34 @@
+---
+slug: fragments/sidebar
+layout: ''
+# enable_profiler: true
+searchable: true
+metadata: {
+  "status": "published",
+  "page_type": "content",
+  "og:url": "",
+  "og:type": "",
+  "og:image": "",
+  "og:title": "Insites Template Intranet | Home Page",
+  "og:description": "The Insites platform allows you to create world class web applications using elements through a complete design and development eco-system.",
+  "og:site_name": "",
+  "meta_title": "Insites Template Intranet | Home Page",
+  "page_title": "Insites Template Intranet | Home Page",
+  "meta_description": "The Insites platform allows you to create world class web applications using elements through a complete design and development eco-system.",
+  "canonical_url": "",
+  "search_engine_visibility": true,
+  "sitemap_enabled": true,
+  "sitemap_priority": "1.0",
+  "sitemap_order": "0", 
+  "sitemap_changefreq": "daily"
+}
+enable_profiler: true
+---
+{%- assign sidebar_fragment_title = context.params.parent_slug | default: '' -%}
+{%- assign current_slug = context.params.current_slug | default: '' -%}
+{%- assign parent_slug = context.params.parent_slug | default: '' -%}
+
+{%- include 'modules/ins_template_intranet/content/sidebar/sidebar', 
+    title: title,
+    parent_slug: parent_slug,
+    current_slug: current_slug -%}

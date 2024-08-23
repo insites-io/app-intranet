@@ -1,0 +1,60 @@
+query search_keyword_documentation (
+  $id: ID,
+  $page: Int = 1,
+  $size: Int = 5,
+  $keyword: String,
+  $schema: String,
+  $status: String
+) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      properties: [
+        { name: "status", value: $status }                  
+      ],
+      id: { 
+        value: $id
+      },
+      deleted_at: { 
+        exists: false
+      },
+      model_schema_name: { 
+        value: $schema 
+      },
+      or: [
+        {
+          properties: [
+            { 
+              name: "title",
+              contains: $keyword
+            }
+          ]
+        },
+        {
+          properties: [
+            { 
+              name: "short_description",
+              contains: $keyword
+            }
+          ]
+        }
+      ]
+    }
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      table
+      id 
+      section: property(name: "section")
+      slug: property(name: "slug")
+      title: property(name: "title")
+      published_date: property(name: "published_date")
+    }
+  }
+}

@@ -1,0 +1,17 @@
+query get_schema_metadata {
+  items: admin_model_schemas(
+    per_page: 1,
+    filter: {
+      name: {
+        value: "modules/ins_template_intranet/timeline"
+      }
+    }
+  ){
+    results {
+      properties {
+        name
+        metadata
+      }
+    }
+  }
+}

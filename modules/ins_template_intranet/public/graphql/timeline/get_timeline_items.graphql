@@ -1,0 +1,60 @@
+query get_timeline_items(
+  $id: ID,
+  $page: Int = 1, 
+  $size: Int = 10, 
+  $tag: String, 
+  $status: String, 
+  $range: RangeFilter
+) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      id: { value: $id },
+      deleted_at: {
+        exists: false
+      },
+      model_schema_name: {
+        value: "modules/ins_template_intranet/timeline"
+      },
+      properties: [
+        {
+          name: "category_tag",
+          value: $tag
+        },
+        {
+          name: "status",
+          value: $status
+        },
+        {
+          name: "published_date",
+          range: $range
+        }
+      ]
+    }
+    sort: [
+      { 
+        properties: {
+          name: "published_date",
+          order: DESC
+        }
+      }
+    ]
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      id
+      slug: property(name: "slug")
+      title: property(name: "title")
+      category_tag: property(name: "category_tag")
+      published_date: property(name: "published_date")
+      timeline_content: property(name: "timeline_content")
+      enable_details_page: property(name: "enable_details_page")
+    }
+  }
+}

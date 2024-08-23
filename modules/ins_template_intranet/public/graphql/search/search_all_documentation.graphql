@@ -1,0 +1,50 @@
+query search_all_documentation(
+  $page: Int = 1,
+  $size: Int = 10,
+  $keyword: String,
+  $status: String
+) {
+  records(
+    page: $page, 
+    per_page: , $size
+  filter: {
+    fulltext: {
+      keyword: $keyword, 
+      match_type: CONTAINS, 
+      operator: OR,
+      }, 
+    table: {value_in: [
+      "modules/ins_template_intranet/support", 
+      "modules/ins_template_intranet/delivery",
+      "modules/ins_template_intranet/design",
+      "modules/ins_template_intranet/developers",
+      "modules/ins_template_intranet/marketing",
+      "modules/ins_template_intranet/sales",
+      "modules/ins_template_intranet/support"
+    ]}, 
+    properties: {
+      name: "status", value: $status,
+    },
+    
+  }) {
+    total_entries
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      table
+      id 
+      section: property(name: "section")
+      slug: property(name: "slug")
+      title: property(name: "title")
+      published_date: property(name: "published_date")
+      attachment_download: property_upload(name: "attachment"){
+          url
+        }
+      attachment_label: property(name: "attachment_label") 
+    }
+  }
+}

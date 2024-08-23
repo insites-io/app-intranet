@@ -1,0 +1,47 @@
+{%- graphql database = 'modules/ins_template_intranet/system/get_database'
+database_name: database_name
+-%}
+{%- comment -%}
+{%- assign title = context.page.metadata.title -%}
+{%- endcomment -%}
+
+{%- assign properties = database.items.results[0].properties -%}
+{%- assign categories = '[]' | parse_json -%}
+{%- for property in properties -%}
+
+{%- if property.name == "category" -%}
+{%- assign categories = property.metadata.values -%}
+{%- endif -%}
+{%- endfor -%}
+
+
+<div class="layout-app-sidebar">
+  <h4 class="hide-for-small-only">{{ title }}</h4>
+  <div class="spacer large hide-for-small-only"></div>
+  {%- assign params = '[]' | parse_json -%}
+  {%- for item in context.params -%}
+  {%- assign params = params | add_to_array: item[0] -%}
+  {%- endfor -%}
+
+  <ins-accordion-link link-target="_self" link="/{{ all_link }}" label="All" {% if params contains "category" %} {% else
+    %} {%- assign link="/" | append: context.page.slug -%} active {% endif %}>
+  </ins-accordion-link>
+
+  {%- for category in categories -%}
+  {% assign params_category = context.params.category | downcase %}
+  {% assign label_category = category | downcase %}
+  
+  <ins-accordion-link {% if params_category == label_category %} class="active" {% endif %} link-target="_self" link="?category={{ category }}" label="{{ category }}" {% if params
+    contains "category" and context.params.category==category %} {%- assign link="/" | append: context.page.slug |
+    append: "?category=" | append: category -%} active {% endif %}>
+  </ins-accordion-link>
+  {%- endfor -%}
+
+  
+
+
+  
+
+</div>
+
+{%- export breadcrumbs, namespace: "page" -%}

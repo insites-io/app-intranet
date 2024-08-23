@@ -1,0 +1,130 @@
+---
+slug: search
+layout: modules/ins_template_intranet/home_layout
+# enable_profiler: true
+searchable: true
+max_deep_level: 1
+metadata: {
+  "status": "published",
+  "page_type": "content",
+  "og:url": "",
+  "og:type": "",
+  "og:image": "",
+  "og:title": "Insites Template Intranet | Search",
+  "og:description": "The Insites platform allows you to create world class web applications using elements through a
+  complete design and development eco-system.",
+  "og:site_name": "",
+  "meta_title": "Insites Template Intranet | Search",
+  "page_title": "Insites Template Intranet | Search",
+  "meta_description": "The Insites platform allows you to create world class web applications using elements through a
+  complete design and development eco-system.",
+  "canonical_url": "",
+  "search_engine_visibility": true,
+  "sitemap_enabled": true,
+  "sitemap_priority": "1.0",
+  "sitemap_order": "0",
+  "sitemap_changefreq": "daily",
+  "security_type": "Secure Zone",
+  "secure_zones": [
+    {
+        "id": "42731",
+        "name": "modules/ins_template_intranet/only_allowed_if_logged_in",
+        "path": "modules/ins_template_intranet/public/authorization_policies/only_allowed_if_logged_in.liquid"
+    },
+    {
+        "id": "42730",
+        "name": "modules/ins_template_intranet/only_allowed_if_ins_administrator",
+        "path": "modules/ins_template_intranet/public/authorization_policies/only_allowed_if_ins_administrator.liquid"
+    }
+  ]
+}
+authorization_policies:
+  - modules/ins_template_intranet/only_allowed_if_logged_in
+  - modules/ins_template_intranet/only_allowed_if_ins_administrator
+enable_profiler: true
+dynamic_cache:
+  layout: |-   
+    true
+  key: |-
+    {%- parse_json models -%}
+    [
+      "modules/insites_site_manager/insites_global_content",
+      "modules/insites_core/insites_system_fields",
+      "modules/ins_template_intranet/delivery",
+      "modules/ins_template_intranet/design",
+      "modules/ins_template_intranet/developers",
+      "modules/ins_template_intranet/marketing",
+      "modules/ins_template_intranet/sales",
+      "modules/ins_template_intranet/support",
+      "modules/ins_template_intranet/location_1",
+      "modules/ins_template_intranet/location_2"
+    ]
+    {%- endparse_json -%}
+    {%- include "modules/ins_template_intranet/system/generate_cache_key", models: models -%}
+---
+{%- assign keyword = context.params.keyword -%}
+{%- assign faq_page = context.params.fp | default: 1 | plus: 0 -%}
+{%- assign news_page = context.params.ap | default: 1 | plus: 0 -%}
+
+{%- assign documentation_page = context.params.dp | default: 1 | plus: 0 -%}
+{%- assign docu_category = context.params.docu_category -%}
+
+{%- assign search_per_page = context.params.per_page | default: 5 | plus: 0 -%}
+
+{%- graphql faq_search_result = 'modules/ins_template_intranet/search/search_keyword_faqs' 
+    schema: 'modules/ins_template_intranet/faqs', 
+    keyword: keyword, 
+    page: faq_page,
+    size: search_per_page
+    status: "Published"
+-%}
+
+{%- if docu_category and docu_category != ""  -%}
+  {%- comment -%} Search Specific Docu Database {%- endcomment -%}
+  {%- assign docu_specific_db = docu_category | replace: "-", "_" -%}
+  {%- assign database_schema = "modules/ins_template_intranet/" | append: docu_specific_db -%}
+
+  {%- graphql documentation_search_result = 'modules/ins_template_intranet/search/search_keyword_documentation' 
+    schema: database_schema, 
+    keyword: keyword, 
+    page: documentation_page,
+    size: search_per_page
+    status: "Published"
+  -%}
+
+  {%- assign documentation_items = documentation_search_result.items -%}
+  {%- comment -%} End Search Specific Docu Database {%- endcomment -%}
+{%- else -%}
+  {%- comment -%} Search All Docu Database {%- endcomment -%}
+  {%- graphql documentation_search_result = 'modules/ins_template_intranet/search/search_all_documentation' 
+    keyword: keyword, 
+    page: documentation_page,
+    size: search_per_page
+    status: "Published"
+  -%}
+
+  {%- assign documentation_items = documentation_search_result.records -%}
+  {%- comment -%} End Search All Docu Database {%- endcomment -%}
+{%- endif -%}
+
+{%- graphql news_search_result = 'modules/ins_template_intranet/search/search_keyword_news' 
+    schema: 'modules/ins_template_intranet/news', 
+    keyword: keyword, 
+    page: news_page,
+    size: search_per_page
+    status: "Published"
+-%}
+
+<div class="app-wrap main-container search-results">
+  {% include 'modules/ins_template_intranet/content/search/search-box' %}
+
+  {% include 'modules/ins_template_intranet/content/search/search-result-faqs',
+  faq_search_results: faq_search_result.records %}
+  
+  {% include 'modules/ins_template_intranet/content/search/search-result-documentation', 
+  documentation_search_result: documentation_items %}
+  
+  {% include 'modules/ins_template_intranet/content/search/search-result-news', 
+  news_search_result: news_search_result.items %}
+  <div class="spacer xxxx-large"></div>
+</div>

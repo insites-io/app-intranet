@@ -1,0 +1,183 @@
+<div class="grid-x grid-padding-x gutter-medium footer-linkset-large">
+  <div class="large-9 medium-12 small-12 cell">
+    <!-- 6 set -->
+    <div class="grid-x grid-padding-x">
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Marketing</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_marketing_item in footer_marketing_items -%}
+          {%- if footer_marketing_item.parent_category == null -%}
+          <li>
+            <a href="/marketing/{{ footer_marketing_item.slug }}"
+              class="footer-links color-font-head">{{ footer_marketing_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Support</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_support_item in footer_support_items -%}
+          {%- if footer_support_item.parent_category == null -%}
+          <li>
+            <a href="/support/{{ footer_support_item.slug }}" class="footer-links color-font-head">{{
+              footer_support_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Developers</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_developers_item in footer_developers_items -%}
+          {%- if footer_developers_item.parent_category == null -%}
+          <li>
+            <a href="/developers/{{ footer_developers_item.slug }}"
+              class="footer-links color-font-head">{{ footer_developers_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Delivery</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_delivery_item in footer_delivery_items -%}
+          {%- if footer_delivery_item.parent_category == null -%}
+          <li>
+            <a href="/delivery/{{ footer_delivery_item.slug }}" class="footer-links color-font-head">{{
+              footer_delivery_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Design</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_design_item in footer_design_items -%}
+          {%- if footer_design_item.parent_category == null -%}
+          <li>
+            <a href="/design/{{ footer_design_item.slug }}" class="footer-links color-font-head">{{
+              footer_design_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-2 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Sales</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_sales_item in footer_sales_items -%}
+          {%- if footer_sales_item.parent_category == null -%}
+          <li>
+            <a href="/sales/{{ footer_sales_item.slug }}" class="footer-links color-font-head">{{
+              footer_sales_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+    </div>
+    <!-- /6 set -->
+  </div>
+  <div class="large-3 medium-12 small-12 cell">
+    <!-- 2 set-->
+    <div class="grid-x grid-padding-x">
+      <div class="large-6 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a class="navigation-level-1 color-font-head">Location 1</a>
+            <div class="spacer"></div>
+          </li>
+
+          {%- for footer_location_1_item in footer_location_1_items -%}
+          {%- if footer_location_1_item.parent_category == null -%}
+          <li>
+            <a href="/location-1/{{ footer_location_1_item.slug }}" class="footer-links color-font-head">{{
+              footer_location_1_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <ul class="vertical menu">
+          <li>
+            <div class="spacer"></div>
+            <a class="navigation-level-1 color-font-head">Location 2</a>
+            <div class="spacer"></div>
+          </li>
+          {%- for footer_location_2_item in footer_location_2_items -%}
+          {%- if footer_location_2_item.parent_category == null -%}
+          <li>
+            <a href="/location-2/{{ footer_location_2_item.slug }}" class="footer-links color-font-head">{{
+              footer_location_2_item.title }}</a>
+            <div class="spacer x-small"></div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <!-- /link set -->
+      </div>
+      <div class="large-6 cell">
+        <!-- link set -->
+        <ul class="vertical menu">
+          <li>
+            <a href="/news" class="navigation-level-1 color-font-head">News</a>
+            <div class="spacer"></div>
+          </li>
+          <li>
+            <a href="/faqs" class="navigation-level-1 color-font-head">FAQs</a>
+            <div class="spacer"></div>
+          </li>
+          <li>
+            <a href="/timeline" class="navigation-level-1 color-font-head">Timeline</a>
+            <div class="spacer x-small"></div>
+          </li>
+        </ul>
+        <!-- /link set -->
+      </div>
+    </div>
+    <!-- /2 set -->
+  </div>
+</div>

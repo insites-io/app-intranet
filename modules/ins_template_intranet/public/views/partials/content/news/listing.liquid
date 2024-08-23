@@ -1,0 +1,191 @@
+{%- graphql list = 'modules/ins_template_intranet/content/get_content_layout',
+database_name: context.page.metadata.database_name,
+layout: "list" -%}
+
+
+{%- assign page = context.params.page | default: 1 | plus: 0 -%}
+{%- assign size = context.params.per_page | default: 10 | plus: 0 -%}
+{%- assign page_category = context.params.category | default: "" -%}
+{%- assign page_keyword = context.params.keyword | default: "" -%}
+
+{%- include 'modules/ins_template_intranet/content/news/search', 
+top_heading: "Company news",
+page_category: page_category, 
+page_keyword: page_keyword -%}
+
+{%- graphql news_list = 'modules/ins_template_intranet/news/get_news'
+page: page,
+size: size,
+current_date: date_now,
+category: page_category,
+keyword: page_keyword
+-%}
+
+<div class="blocks-sc-2col-04 wrapper bg-color-ui-01 news-listing">
+  <div class="grid-container">
+    <div class="spacer section"></div>
+
+    {% comment %} Has Results checker {% endcomment %}
+    {% if news_list.items.total_entries > 0 %}
+
+    {%- for news in news_list.items.results -%}
+    {%- assign link = "/" | append: context.page.slug | append: "/" | append: news.slug -%}
+
+    
+
+    <!-- article -->
+    <article class="grid-x grid-padding-x gutter-medium blog-list align-middle" id="dynamic-content-wrapper" onclick="goToNewsDetail('{{ link | downcase }}')">
+      <div class="large-6 medium-6 small-12 cell">
+        <a>
+          <img src="{{ news.image.url }}" alt="image" />
+        </a>
+        <div class="spacer xxx-large show-for-small-only"></div>
+      </div>
+      <div class="large-5 large-offset-1 medium-6 small-12 cell">
+        <!-- tag setter -->
+        {%- assign news_list_category =  news.category | downcase -%}
+        {%- case news_list_category -%}
+        {% when 'company' %}
+        {%- assign tag_class = 'tag-company' -%}
+        {% when 'hr' %}
+        {%- assign tag_class = 'tag-hr' -%}
+        {% when 'location 1' %}
+        {%- assign tag_class = 'tag-location-1' -%}
+        {% when 'location 2' %}
+        {%- assign tag_class = 'tag-location-2' -%}
+        {% when 'marketing' %}
+        {%- assign tag_class = 'tag-marketing' -%}
+        {% when 'sales' %}
+        {%- assign tag_class = 'tag-sales' -%}
+        {% when 'support' %}
+        {%- assign tag_class = 'tag-support' -%}
+        {% when 'design' %}
+        {%- assign tag_class = 'tag-design' -%}
+        {% when 'delivery' %}
+        {%- assign tag_class = 'tag-delivery' -%}
+        {% when 'developers' %}
+        {%- assign tag_class = 'tag-developers' -%}
+        {%- endcase -%}
+
+        <!-- /tag setter -->
+
+        <ins-tag class="capitalize {{ tag_class }}" icon="icon-tag1" label="{{ news.category }}">
+        </ins-tag>
+        <div class="spacer small"></div>
+        <div class="spacer large font-small news-details">
+          <a class="color-font-head" data-test="">
+            <h2 class="heading-2 font-blue">{{ news.post_title }}</h2>
+          </a>
+          <div class="spacer small"></div>
+          <p class="subhead-2 color-font-sub">
+            Published on {{ news.published_date | strftime: '%b %d, %Y', 'Sydney' }}
+            {%- if news.author -%}&nbsp;by&nbsp;{{ news.author }}{%- endif -%}
+          </p>
+        </div>
+        <div class="news-description">
+          <p class="font-grey">{{ news.short_text }}</p>
+          <div class=" spacer large"></div>
+        </div>
+        <a href="/news/{{ news.slug }}" class="button-default color-main read-more">
+          Read More  <i class="icon-angle-right"></i></a>
+      </div>
+    </article>
+    <!-- /article -->
+    <div class="listing-spacer spacer section"></div>
+    
+
+    {%- comment -%}pagination{%- endcomment -%}
+    {%- if forloop.last and news_list.items.has_next_page or news_list.items.has_previous_page -%}
+    <div class="listing-spacer spacer section"></div>
+    <!-- page buttons -->
+    <div class="grid-x grid-padding-x page-buttons">
+      <div class="large-12 cell">
+        <div class="spacer xxxx-large"></div>
+        
+        {%- if news_list.items.has_previous_page -%}
+        <ins-button id="previousPage" class="btn-previous" outlined label="Previous">
+        </ins-button>
+        {%- endif -%}
+        
+        {%- if news_list.items.has_next_page -%}
+        <ins-button id="nextPage" class="btn-next" solid label="Next">
+        </ins-button>
+        {%- endif -%}
+
+      </div>
+    </div>
+    <!-- /page buttons -->
+    {%- endif %}
+    {%- comment -%}end pagination{%- endcomment -%}
+
+    {%- endfor %}
+    {% comment %} End Has Results {% endcomment %}
+
+    {% else %}
+    {% comment %} No Results {% endcomment %}
+    {%- include 'modules/ins_template_intranet/content/news/no-results' -%}
+
+    {% comment %} End No Results {% endcomment %}
+    {% endif %}
+
+    
+    {% comment %} End Has Results checker {% endcomment %}
+
+    {%- comment -%}Pagination controller script{%- endcomment -%}
+    {%- if news_list.items.results -%}
+    <script>
+      let page = {{page}}, size = {{size}}, total_pages = {{news_list.items.total_pages}};
+      let prevBtn = document.getElementById('previousPage');
+      let nextBtn = document.getElementById('nextPage');
+      let paginationSizeEl = document.getElementById('paginationSize');
+      let category = '{{ page_category }}';
+      let keyword = '{{ page_keyword }}';
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (page > 1) {
+            page--;
+            prevBtn.loading = true;
+            if (nextBtn)
+              nextBtn.disabled = true;
+            blogRefresh();
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (page < total_pages) {
+            page++;
+            nextBtn.loading = true;
+            if (prevBtn)
+              prevBtn.disabled = true;
+            blogRefresh();
+          }
+        });
+      }
+
+      if (paginationSizeEl) {
+        paginationSizeEl.addEventListener('valueChange', (event) => {
+          page = 1;
+          size = event.detail;
+          blogRefresh();
+        });
+      }
+
+      function blogRefresh() {
+        window.location.href = `?page=${page}&per_page=${size}&category=${category}&keyword=${keyword}`;
+      }
+
+      function goToNewsDetail(link) {
+        window.location.href = link;
+      }
+
+    </script>
+    {%- endif -%}
+    {%- comment -%}End pagination controller script{%- endcomment -%}
+
+    
+    <div class="spacer section"></div>
+  </div>
+</div>

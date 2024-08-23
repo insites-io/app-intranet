@@ -1,0 +1,67 @@
+---
+slug: /
+layout: modules/ins_template_intranet/home_layout
+# enable_profiler: true
+searchable: true
+max_deep_level: 1
+metadata: {
+    "status": "published",
+    "page_type": "content",
+    "og:url": "",
+    "og:type": "",
+    "og:image": "",
+    "og:title": "Insites Template Intranet | Home Page",
+    "og:description": "The Insites platform allows you to create world class web applications using elements through a complete design and development eco-system.",
+    "og:site_name": "",
+    "meta_title": "Insites Template Intranet | Home Page",
+    "page_title": "Insites Template Intranet | Home Page",
+    "meta_description": "The Insites platform allows you to create world class web applications using elements through a complete design and development eco-system.",
+    "canonical_url": "",
+    "search_engine_visibility": true,
+    "sitemap_enabled": true,
+    "sitemap_priority": "1.0",
+    "sitemap_order": "0", 
+    "sitemap_changefreq": "daily",
+    "security_type": "Secure Zone",
+    "secure_zones": [
+      {
+          "id": "42731",
+          "name": "modules/ins_template_intranet/only_allowed_if_logged_in",
+          "path": "modules/ins_template_intranet/public/authorization_policies/only_allowed_if_logged_in.liquid"
+      },
+      {
+          "id": "42730",
+          "name": "modules/ins_template_intranet/only_allowed_if_ins_administrator",
+          "path": "modules/ins_template_intranet/public/authorization_policies/only_allowed_if_ins_administrator.liquid"
+      }
+    ]
+}
+authorization_policies:
+  - modules/ins_template_intranet/only_allowed_if_logged_in
+  - modules/ins_template_intranet/only_allowed_if_ins_administrator
+enable_profiler: true
+dynamic_cache:
+  layout: |-   
+    true
+  key: |-
+    {%- parse_json models -%}
+    [
+      "modules/insites_site_manager/insites_global_content",
+      "modules/insites_core/insites_system_fields",
+      "modules/ins_template_intranet/news",
+      "modules/ins_template_intranet/faqs",
+      "modules/ins_template_intranet/timeline"
+    ]
+    {%- endparse_json -%}
+    {%- include "modules/ins_template_intranet/system/generate_cache_key", models: models -%}
+---
+
+<div class="app-wrap main-container">
+    {% include 'modules/ins_template_intranet/content/homepage/search' %}    
+    {% include 'modules/ins_template_intranet/content/homepage/company-news' %}    
+    {% include 'modules/ins_template_intranet/content/homepage/faqs-articles' %}   
+    
+    <div id="testscroll">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quaerat odio numquam quam provident maxime cupiditate perferendis eaque sint quo? Quos rerum voluptates exercitationem? Dolore magnam ut harum sequi quaerat?
+    </div>
+</div>

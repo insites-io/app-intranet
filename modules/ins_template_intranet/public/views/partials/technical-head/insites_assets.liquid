@@ -1,0 +1,16 @@
+<link rel="preload" href="https://components.insites.io/latest/css/insites-font-icons.css" as="style">
+<link rel="preload" href="https://components.insites.io/latest/css/insites.css" as="style">
+
+<!-- Font Icons -->
+<link rel="stylesheet" href="https://components.insites.io/latest/css/insites-font-icons.css">
+
+<!-- Components -->
+{%- assign ins_version = 'https://components.insites.io/v2/latest/' -%}
+<link rel="stylesheet" href="{{ ins_version | append: 'css/insites.css' }}" />
+<script type="module" src="{{ ins_version | append: 'insites.esm.js' }}"></script>
+<script nomodule src="{{ ins_version | append: 'insites.js' }}" defer></script>
+
+<script src="https://components.insites.io/insites_utilities.js"></script>
+<script src="https://components.insites.io/S3UploaderService.js" defer></script>
+
+{% comment %} {%- include 'modules/insites_database/insites_functions/insites_database_form_scripts' -%} {% endcomment %}

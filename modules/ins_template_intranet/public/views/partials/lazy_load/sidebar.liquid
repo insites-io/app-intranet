@@ -1,0 +1,35 @@
+{%- assign title = context.page.metadata.page_title -%}
+{%- assign parent_slug = context.page.slug -%}
+{%- assign current_slug = context.params.slug2 -%}
+<div data-remote-content="sidebar"></div>
+
+{% assign title = "Location" %}
+
+<script>
+    let url = '/fragments/sidebar';
+    url += '?title={{ title }}';
+    url += '&current_slug={{ current_slug }}';
+    url += '&parent_slug={{ parent_slug }}';
+
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            let container = document.querySelector('[data-remote-content="sidebar"]');
+            container.innerHTML = html;
+
+            let routes = []
+            setTimeout(() => {
+                let path = window.location.pathname;
+                let el = document.querySelector(`ins-accordion-link[link="${path}"]`);
+                if (!el) el = document.querySelector(`ins-accordion-item[link="${path}"]`);
+                if (el) el.classList.add('active-link');
+                
+                while (el){
+                    routes.push(el);
+                    el = el.parentElement.closest('ins-accordion-item');
+                }
+
+                routes.reverse().forEach(route => route.toggle());
+            }, 650);
+        });
+</script>

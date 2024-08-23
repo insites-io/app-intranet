@@ -1,0 +1,7 @@
+---
+name: only_allow_if_no_session
+redirect_to: /session/logout
+flash_alert: You are still login
+---
+{% graphql data = 'modules/ins_template_intranet/session/get_current_user' %}
+{% if data.current_user == nil %}true{% endif %}

@@ -1,0 +1,5 @@
+{%- liquid 
+  assign breadcrumb = '{}' | parse_json
+  assign breadcrumb = breadcrumb | add_hash_key: "label", label
+  assign breadcrumb = breadcrumb | add_hash_key: "link", link
+  return breadcrumb -%}

@@ -1,0 +1,19 @@
+query get_database($database_name: String) {
+  items: admin_model_schemas(
+    per_page: 20,
+    filter: {
+      parameterized_name: {
+        value: $database_name
+      }
+    }
+  ) {
+    total_entries
+    results {
+      parameterized_name
+      properties {
+        name
+        metadata
+      }
+    }
+  }
+}

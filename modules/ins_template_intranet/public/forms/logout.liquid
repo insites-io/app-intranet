@@ -1,0 +1,39 @@
+---
+name: logout
+resource: Session
+#redirect_to: login
+fields:
+  return_to:
+    property_options:
+      readonly: true
+      virtual: true
+redirect_to: >
+  {%- assign return_to = form.return_to -%}
+  {%- if return_to.size > 0 -%}
+    {{ return_to | url_decode }}
+  {%- else -%}
+    /login
+  {%- endif -%}
+flash_notice: You have been logged out securely.
+---
+
+{% form method: 'delete' %}
+  <input name="form[return_to]" value="{{ context.params.return_to }}" type="hidden" id="return_to_url">
+
+  <div style="display: none;">
+    <input type="submit" id="logoutButon" />
+  </div>
+{% endform %}
+
+
+<script>
+  var submitButton = document.querySelector('[type="submit"]');
+  var route = location.href.includes("#") ? encodeURIComponent("#" + location.href.split("#")[1]) : ""
+  var returnToUrlInput = document.getElementById('return_to_url');
+  
+  returnToUrlInput.value = returnToUrlInput.value + route
+
+  submitButton.click();
+  sessionStorage.setItem("session_deleted", "success");
+  sessionStorage.removeItem("ins_breadcrumbs");
+</script>

@@ -1,0 +1,41 @@
+<div class="app-wrap main-container docu-layout-detail">
+  {%- include 'modules/ins_template_intranet/layout/sub_header' -%}
+  <div class="wrapper">
+    <div class="grid-container">
+      <div class="spacer section hide-for-small-only"></div>
+      <div class="spacer xxxx-large show-for-small-only"></div>
+
+      {%- if context.device.device_type == "desktop" or context.device.device_type == "tablet" -%}
+      <div class="grid-x grid-padding-x">
+        <div class="small-12 medium-4 large-3 cell app-sidebar">
+          <!-- sidebar -->
+          {%- include 'modules/ins_template_intranet/lazy_load/sidebar' -%}
+          <div class="spacer xxxx-large hide-for-small-only"></div>
+          <!-- /sidebar -->
+        </div>
+        <div class="small-12 medium-8 large-9 cell documentation-content">
+          {% include 'modules/ins_template_intranet/content/documentation/documentation-detail-holder' %}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Swap sidebar/content on mobile {%- endcomment -%}
+      {%- if context.device.device_type == "smartphone" -%}
+      <div class="grid-x grid-padding-x">
+        <div class="small-12 medium-4 large-3 cell documentation-content">
+          <!-- sidebar -->
+          <div class="spacer xxxx-large show-for-small-only"></div>
+          {% include 'modules/ins_template_intranet/content/documentation/documentation-detail-holder' %}
+          <div class="spacer xxxx-large hide-for-small-only"></div>
+          <!-- /sidebar -->
+        </div>
+        <div class="small-12 medium-8 large-9 cell app-sidebar">
+          {%- include 'modules/ins_template_intranet/lazy_load/sidebar' -%}
+        </div>
+      </div>
+      {%- endif -%}
+      <div class="spacer section"></div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+tree.liquid
+
+{%- assign menus = "" | split: "," -%}
+{%- assign has_active = false -%}
+
+{%- graphql parents = query_path,
+    database_schema: database_schema,
+    parent_id: parent_id -%}
+
+{%- if parents.items.total_entries > 0 -%}
+
+    {%- for parent in parents.items.results -%}
+
+        {%- function children = "modules/ins_template_intranet/content/sidebar/tree",
+            query_path: "modules/ins_template_intranet/sidebar/get_child_menu",
+            database_schema: database_schema,
+            date_now: date_now,
+            parent_id: parent.id,
+            main_link: main_link,
+            current_slug: current_slug -%}
+
+        {%- assign link = "" -%}
+        {%- if parent.slug -%}
+            {%- assign link = main_link | append: parent.slug -%}
+        {%- endif -%}
+
+        {%- assign active_child = false -%}
+        {%- if current_slug == parent.slug or children.has_active -%}
+            {%- assign active_child = true -%}
+            {%- assign has_active = true -%}
+        {%- endif -%}
+
+        {%- assign menu = "{}" | parse_json -%}
+        {%- assign menu = menu | add_hash_key: "label", parent.menu_label -%}
+        {%- assign menu = menu | add_hash_key: "link", link -%}
+        {%- assign menu = menu | add_hash_key: "children", children.menus-%}
+        {%- assign menu = menu | add_hash_key: "active", active_child -%}
+
+        {%- assign menus = menus | add_to_array: menu -%}
+
+    {%- endfor -%}
+
+{%- endif -%}
+
+{%- assign branch = "{}" | parse_json -%}
+{%- assign branch = branch | add_hash_key: "menus", menus -%}
+{%- assign branch = branch | add_hash_key: "has_active", has_active -%}
+
+{%- return branch -%}

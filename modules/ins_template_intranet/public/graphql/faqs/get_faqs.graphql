@@ -1,0 +1,55 @@
+query get_faqs($page: Int = 1, $size: Int = 10, $category: String, $featured: Boolean, $status: String ) {
+  items: models(
+    page: $page,
+    per_page: $size,
+    filter: {
+      deleted_at: {
+        exists: false
+      },
+      model_schema_name: {
+        value: "modules/ins_template_intranet/faqs"
+      },
+      properties: 
+        [
+          {
+            name: "category",
+            contains: $category
+          },
+          {
+            name: "featured",
+            value_boolean: $featured
+          },
+          {
+            name: "status",
+            value: $status
+          }
+        ]
+    },
+    sort: [
+      { 
+        properties: {
+          name: "sort_order",
+          order: ASC
+        }
+      }
+    ]
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      question: property(name: "question")
+      answer: property(name: "answer")
+      order: property(name: "order")
+      category: property_array(name: "category") 
+      status: property(name: "status")
+      attachment_download: property_upload(name: "attachment"){
+        url
+      }
+      attachment_label: property(name: "attachment_label")  
+    }
+  }
+}
