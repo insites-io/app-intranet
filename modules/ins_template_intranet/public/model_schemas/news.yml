@@ -1,53 +1,54 @@
-name: modules/ins_template_intranet/news
+name: news
 metadata:
   label: "News"
   groups: [{"id":"748d0e6a-5ae2-4129-b9e7-36c074f6c3e8","name":"Post Settings","weight":0},{"id":"ffb4f8fd-f5de-43c3-8978-604b59e82e01","name":"Post Content","weight":1}]
-  is_enabled: true
+  is_archived: false
 properties:
 - name: author
   type: string
   metadata:
-    type: "text"
     label: "Author"
     weight: 6
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
-    is_header: false
+    ui_element: "input"
     is_required: true
+    is_shown_in_table: false
 - name: category
   type: string
   metadata:
-    type: "list_select"
     label: "Category"
-    values: ["Company","HR","Location 1","Location 2","Marketing","Sales","Support","Design","Delivery","Developers"]
     weight: 5
+    options: ["Company","HR","Location 1","Location 2","Marketing","Sales","Support","Design","Delivery","Developers"]
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
-    is_header: true
+    ui_element: "select"
     is_required: true
     is_sortable: true
+    is_shown_in_table: true
 - name: content_block_1
   type: string
   metadata:
-    type: "markdown"
     label: "Content Block 1"
     weight: 8
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
+    ui_element: "markdown"
     is_required: true
 - name: content_block_2
   type: string
   metadata:
-    type: "markdown"
     label: "Content Block 2"
     weight: 9
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
+    ui_element: "markdown"
     is_required: false
 - name: image
   type: upload
   metadata:
-    type: "media_image"
     label: "Image"
     weight: 10
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
+    ui_element: "media_file"
     is_required: false
+    max_file_size: 100
   options:
     acl: public
     cache_control: ""
@@ -55,57 +56,58 @@ properties:
 - name: order
   type: integer
   metadata:
-    type: "number"
     label: "Order"
     weight: 2
     group_id: "748d0e6a-5ae2-4129-b9e7-36c074f6c3e8"
-    is_header: false
+    ui_element: "number"
     is_required: false
+    is_shown_in_table: false
 - name: post_title
   type: string
   metadata:
-    type: "text"
     label: "Post Title"
     weight: 3
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
-    is_header: true
+    ui_element: "input"
     is_required: true
-    is_searchable: true
+    is_sortable: true
+    is_shown_in_table: true
 - name: published_date
   type: date
   metadata:
-    type: "date"
     label: "Published Date"
     weight: 0
     group_id: "748d0e6a-5ae2-4129-b9e7-36c074f6c3e8"
-    is_header: true
-    is_required: true
+    ui_element: "date"
+    is_required: false
     is_sortable: true
+    is_shown_in_table: true
 - name: short_text
   type: string
   metadata:
-    type: "text"
     label: "Short Text"
     weight: 7
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
-    is_header: false
-    is_required: true
+    ui_element: "input"
+    is_required: false
+    is_shown_in_table: false
 - name: slug
   type: string
   metadata:
-    type: "text"
     label: "Slug"
     weight: 4
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
-    is_header: false
+    ui_element: "input"
     is_required: true
+    is_shown_in_table: false
 - name: status
   type: string
   metadata:
-    type: "list_select"
     label: "Status"
-    values: ["Published","Draft"]
     weight: 1
+    options: ["Published","Draft"]
     group_id: "748d0e6a-5ae2-4129-b9e7-36c074f6c3e8"
-    is_header: false
+    ui_element: "select"
     is_required: true
+    is_sortable: true
+    is_shown_in_table: true

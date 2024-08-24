@@ -1,92 +1,92 @@
-name: modules/ins_template_intranet/timeline
+name: timeline
 metadata:
   label: "Timeline"
   groups: [{"id":"44dd3dec-ba37-4961-b203-057a8ae882ec","name":"Post Settings","weight":0},{"id":"15911564-45bd-4b10-9023-644be3b83ffd","name":"Timeline Content","weight":1},{"id":"3bd1438a-8e76-45d3-8803-5cb38d8f3be6","name":"Details Page (optional)","weight":2}]
-  is_enabled: true
+  is_archived: false
 properties:
 - name: author
   type: string
   metadata:
-    type: "text"
     label: "Author"
     weight: 2
     group_id: "15911564-45bd-4b10-9023-644be3b83ffd"
-    is_header: false
+    ui_element: "input"
     is_required: false
+    is_shown_in_table: false
 - name: category_tag
   type: string
   metadata:
-    type: "list_select"
     label: "Category Tag"
-    values: ["Company","HR","Location 1","Location 2","Developers","Design","Support","Sales","Marketing","Delivery"]
     weight: 5
+    options: ["Company","HR","Location 1","Location 2","Developers","Design","Support","Sales","Marketing","Delivery"]
     group_id: "15911564-45bd-4b10-9023-644be3b83ffd"
-    is_header: true
+    ui_element: "select"
     is_required: true
+    is_sortable: true
+    is_shown_in_table: true
 - name: detailed_content
   type: string
   metadata:
-    type: "markdown"
     label: "Detailed Content"
     weight: 8
     group_id: "3bd1438a-8e76-45d3-8803-5cb38d8f3be6"
+    ui_element: "markdown"
     is_required: false
     help_text_tooltip: "Required if detail page is enabled."
 - name: enable_details_page
   type: boolean
   metadata:
-    type: "toggle"
     label: "Enable Details Page"
     weight: 6
     group_id: "3bd1438a-8e76-45d3-8803-5cb38d8f3be6"
-    is_header: true
+    ui_element: "toggle"
     is_sortable: true
+    is_shown_in_table: true
 - name: published_date
   type: date
   metadata:
-    type: "date"
     label: "Published Date"
     weight: 0
     group_id: "44dd3dec-ba37-4961-b203-057a8ae882ec"
-    is_header: true
+    ui_element: "date"
     is_required: true
     is_sortable: true
+    is_shown_in_table: true
 - name: slug
   type: string
   metadata:
-    type: "text"
     label: "Slug"
     weight: 7
     group_id: "3bd1438a-8e76-45d3-8803-5cb38d8f3be6"
-    is_header: false
+    ui_element: "input"
     is_required: false
+    is_shown_in_table: false
     help_text_tooltip: "This is required if details page is enabled."
 - name: status
   type: string
   metadata:
-    type: "list_select"
     label: "Status"
-    values: ["Published","Draft"]
     weight: 1
+    options: ["Published","Draft"]
     group_id: "44dd3dec-ba37-4961-b203-057a8ae882ec"
-    is_header: false
+    ui_element: "select"
     is_required: false
+    is_shown_in_table: false
 - name: timeline_content
   type: string
   metadata:
-    type: "markdown"
     label: "Timeline Content"
     weight: 4
     group_id: "15911564-45bd-4b10-9023-644be3b83ffd"
+    ui_element: "markdown"
     is_required: true
 - name: title
   type: string
   metadata:
-    type: "text"
     label: "Title"
     weight: 3
     group_id: "15911564-45bd-4b10-9023-644be3b83ffd"
-    is_header: true
+    ui_element: "input"
     is_required: true
     is_sortable: true
-    is_searchable: true
+    is_shown_in_table: true
