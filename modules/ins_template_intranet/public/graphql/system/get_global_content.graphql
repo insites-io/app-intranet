@@ -2,7 +2,7 @@ query get_global_content {
   items: records(
     per_page: 1,
     filter: {
-      table: { value: "modules/insites_site_manager/insites_global_content" }
+      table: { value: "modules/insites_cms/global" }
       deleted_at: { exists: false }
     },
     sort: { updated_at: { order: DESC } }
