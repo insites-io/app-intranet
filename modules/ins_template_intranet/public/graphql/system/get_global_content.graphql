@@ -1,281 +1,374 @@
 query get_global_content {
   items: records(
-    per_page: 1,
+    per_page: 1
     filter: {
       table: { value: "modules/insites_cms/global" }
       deleted_at: { exists: false }
-    },
+    }
     sort: { updated_at: { order: DESC } }
   ) {
-      total_entries
-      results {
-        id
-        created_at
-        updated_at
-        company_id: property(name: "company_id")
-        company_name: property(name: "company_name")
-        company_slogan: property(name: "company_slogan")
-        company_url: property(name: "company_url")
-        company_email_1: property(name: "company_email_1")
-        company_email_2: property(name: "company_email_2")
+    total_entries
+    results {
+      id
+      created_at
+      updated_at
 
-        facebook_link: property(name: "facebook_link")
-        youtube_link: property(name: "youtube_link")
-        twitter_link: property(name: "twitter_link")
-        linkedin_link: property(name: "linkedin_link")
-        instagram_link: property(name: "instagram_link")
-        pinterest_link: property(name: "pinterest_link")
-        other_1_link: property(name: "other_1_link")
-        other_2_link: property(name: "other_2_link")
+      business_registration: property(name: "business_registration")
+      company_id: property(name: "company_id")
+      company_name: property(name: "company_name")
+      company_slogan: property(name: "company_slogan")
+      company_url: property(name: "company_url")
+      company_email_1: property(name: "company_email_1")
+      company_email_2: property(name: "company_email_2")
 
-        loc_1_name: property(name: "loc_1_name")
-        loc_1_email: property(name: "loc_1_email")
-        loc_1_contact_person: property(name: "loc_1_contact_person")
-        loc_1_timezone: property(name: "loc_1_timezone")
-        loc_1_schedule_format: property(name: "loc_1_schedule_format")
-        loc_1_mon_enable: property_boolean(name: "loc_1_mon_enable")
-        loc_1_mon_open: property(name: "loc_1_mon_open")
-        loc_1_mon_close: property(name: "loc_1_mon_close")
-        loc_1_tue_enable: property_boolean(name: "loc_1_tue_enable")
-        loc_1_tue_open: property(name: "loc_1_tue_open")
-        loc_1_tue_close: property(name: "loc_1_tue_close")
-        loc_1_wed_enable: property_boolean(name: "loc_1_wed_enable")
-        loc_1_wed_open: property(name: "loc_1_wed_open")
-        loc_1_wed_close: property(name: "loc_1_wed_close")
-        loc_1_thu_enable: property_boolean(name: "loc_1_thu_enable")
-        loc_1_thu_open: property(name: "loc_1_thu_open")
-        loc_1_thu_close: property(name: "loc_1_thu_close")
-        loc_1_fri_enable: property_boolean(name: "loc_1_fri_enable")
-        loc_1_fri_open: property(name: "loc_1_fri_open")
-        loc_1_fri_close: property(name: "loc_1_fri_close")
-        loc_1_sat_enable: property_boolean(name: "loc_1_sat_enable")
-        loc_1_sat_open: property(name: "loc_1_sat_open")
-        loc_1_sat_close: property(name: "loc_1_sat_close")
-        loc_1_sun_enable: property_boolean(name: "loc_1_sun_enable")
-        loc_1_sun_open: property(name: "loc_1_sun_open")
-        loc_1_sun_close: property(name: "loc_1_sun_close")
-        loc_1_phone: property(name: "loc_1_phone")
-        loc_1_phone_country_code: property(name: "loc_1_phone_country_code")
-        loc_1_phone_area_code: property(name: "loc_1_phone_area_code")
-        loc_1_phone_number: property(name: "loc_1_phone_number")
-        loc_1_fax: property(name: "loc_1_fax")
-        loc_1_fax_country_code: property(name: "loc_1_fax_country_code")
-        loc_1_fax_area_code: property(name: "loc_1_fax_area_code")
-        loc_1_fax_number: property(name: "loc_1_fax_number")
+      facebook_link: property(name: "facebook_link")
+      youtube_link: property(name: "youtube_link")
+      twitter_link: property(name: "twitter_link")
+      linkedin_link: property(name: "linkedin_link")
+      instagram_link: property(name: "instagram_link")
+      pinterest_link: property(name: "pinterest_link")
+      other_1_link: property(name: "other_1_link")
+      other_2_link: property(name: "other_2_link")
 
-        loc_2_name: property(name: "loc_2_name")
-        loc_2_email: property(name: "loc_2_email")
-        loc_2_contact_person: property(name: "loc_2_contact_person")
-        loc_2_timezone: property(name: "loc_2_timezone")
-        loc_2_schedule_format: property(name: "loc_2_schedule_format")
-        loc_2_mon_enable: property_boolean(name: "loc_2_mon_enable")
-        loc_2_mon_open: property(name: "loc_2_mon_open")
-        loc_2_mon_close: property(name: "loc_2_mon_close")
-        loc_2_tue_enable: property_boolean(name: "loc_2_tue_enable")
-        loc_2_tue_open: property(name: "loc_2_tue_open")
-        loc_2_tue_close: property(name: "loc_2_tue_close")
-        loc_2_wed_enable: property_boolean(name: "loc_2_wed_enable")
-        loc_2_wed_open: property(name: "loc_2_wed_open")
-        loc_2_wed_close: property(name: "loc_2_wed_close")
-        loc_2_thu_enable: property_boolean(name: "loc_2_thu_enable")
-        loc_2_thu_open: property(name: "loc_2_thu_open")
-        loc_2_thu_close: property(name: "loc_2_thu_close")
-        loc_2_fri_enable: property_boolean(name: "loc_2_fri_enable")
-        loc_2_fri_open: property(name: "loc_2_fri_open")
-        loc_2_fri_close: property(name: "loc_2_fri_close")
-        loc_2_sat_enable: property_boolean(name: "loc_2_sat_enable")
-        loc_2_sat_open: property(name: "loc_2_sat_open")
-        loc_2_sat_close: property(name: "loc_2_sat_close")
-        loc_2_sun_enable: property_boolean(name: "loc_2_sun_enable")
-        loc_2_sun_open: property(name: "loc_2_sun_open")
-        loc_2_sun_close: property(name: "loc_2_sun_close")
-        loc_2_phone: property(name: "loc_2_phone")
-        loc_2_phone_country_code: property(name: "loc_2_phone_country_code")
-        loc_2_phone_area_code: property(name: "loc_2_phone_area_code")
-        loc_2_phone_number: property(name: "loc_2_phone_number")
-        loc_2_fax: property(name: "loc_2_fax")
-        loc_2_fax_country_code: property(name: "loc_2_fax_country_code")
-        loc_2_fax_area_code: property(name: "loc_2_fax_area_code")
-        loc_2_fax_number: property(name: "loc_2_fax_number")
+      loc_1_name: property(name: "loc_1_name")
+      loc_1_email: property(name: "loc_1_email")
+      loc_1_contact_person: property(name: "loc_1_contact_person")
+      loc_1_timezone: property(name: "loc_1_timezone")
+      loc_1_schedule_format: property(name: "loc_1_schedule_format")
+      loc_1_mon_enable: property_boolean(name: "loc_1_mon_enable")
+      loc_1_mon_open: property(name: "loc_1_mon_open")
+      loc_1_mon_close: property(name: "loc_1_mon_close")
+      loc_1_tue_enable: property_boolean(name: "loc_1_tue_enable")
+      loc_1_tue_open: property(name: "loc_1_tue_open")
+      loc_1_tue_close: property(name: "loc_1_tue_close")
+      loc_1_wed_enable: property_boolean(name: "loc_1_wed_enable")
+      loc_1_wed_open: property(name: "loc_1_wed_open")
+      loc_1_wed_close: property(name: "loc_1_wed_close")
+      loc_1_thu_enable: property_boolean(name: "loc_1_thu_enable")
+      loc_1_thu_open: property(name: "loc_1_thu_open")
+      loc_1_thu_close: property(name: "loc_1_thu_close")
+      loc_1_fri_enable: property_boolean(name: "loc_1_fri_enable")
+      loc_1_fri_open: property(name: "loc_1_fri_open")
+      loc_1_fri_close: property(name: "loc_1_fri_close")
+      loc_1_sat_enable: property_boolean(name: "loc_1_sat_enable")
+      loc_1_sat_open: property(name: "loc_1_sat_open")
+      loc_1_sat_close: property(name: "loc_1_sat_close")
+      loc_1_sun_enable: property_boolean(name: "loc_1_sun_enable")
+      loc_1_sun_open: property(name: "loc_1_sun_open")
+      loc_1_sun_close: property(name: "loc_1_sun_close")
+      loc_1_notes: property(name: "loc_1_notes")
+      loc_1_phone: property(name: "loc_1_phone")
+      loc_1_phone_country_code: property(name: "loc_1_phone_country_code")
+      loc_1_phone_area_code: property(name: "loc_1_phone_area_code")
+      loc_1_phone_number: property(name: "loc_1_phone_number")
+      loc_1_fax: property(name: "loc_1_fax")
+      loc_1_fax_country_code: property(name: "loc_1_fax_country_code")
+      loc_1_fax_area_code: property(name: "loc_1_fax_area_code")
+      loc_1_fax_number: property(name: "loc_1_fax_number")
 
-        loc_3_name: property(name: "loc_3_name")
-        loc_3_email: property(name: "loc_3_email")
-        loc_3_contact_person: property(name: "loc_3_contact_person")
-        loc_3_timezone: property(name: "loc_3_timezone")
-        loc_3_schedule_format: property(name: "loc_3_schedule_format")
-        loc_3_mon_enable: property_boolean(name: "loc_3_mon_enable")
-        loc_3_mon_open: property(name: "loc_3_mon_open")
-        loc_3_mon_close: property(name: "loc_3_mon_close")
-        loc_3_tue_enable: property_boolean(name: "loc_3_tue_enable")
-        loc_3_tue_open: property(name: "loc_3_tue_open")
-        loc_3_tue_close: property(name: "loc_3_tue_close")
-        loc_3_wed_enable: property_boolean(name: "loc_3_wed_enable")
-        loc_3_wed_open: property(name: "loc_3_wed_open")
-        loc_3_wed_close: property(name: "loc_3_wed_close")
-        loc_3_thu_enable: property_boolean(name: "loc_3_thu_enable")
-        loc_3_thu_open: property(name: "loc_3_thu_open")
-        loc_3_thu_close: property(name: "loc_3_thu_close")
-        loc_3_fri_enable: property_boolean(name: "loc_3_fri_enable")
-        loc_3_fri_open: property(name: "loc_3_fri_open")
-        loc_3_fri_close: property(name: "loc_3_fri_close")
-        loc_3_sat_enable: property_boolean(name: "loc_3_sat_enable")
-        loc_3_sat_open: property(name: "loc_3_sat_open")
-        loc_3_sat_close: property(name: "loc_3_sat_close")
-        loc_3_sun_enable: property_boolean(name: "loc_3_sun_enable")
-        loc_3_sun_open: property(name: "loc_3_sun_open")
-        loc_3_sun_close: property(name: "loc_3_sun_close")
-        loc_3_phone: property(name: "loc_3_phone")
-        loc_3_phone_country_code: property(name: "loc_3_phone_country_code")
-        loc_3_phone_area_code: property(name: "loc_3_phone_area_code")
-        loc_3_phone_number: property(name: "loc_3_phone_number")
-        loc_3_fax: property(name: "loc_3_fax")
-        loc_3_fax_country_code: property(name: "loc_3_fax_country_code")
-        loc_3_fax_area_code: property(name: "loc_3_fax_area_code")
-        loc_3_fax_number: property(name: "loc_3_fax_number")
+      loc_2_name: property(name: "loc_2_name")
+      loc_2_email: property(name: "loc_2_email")
+      loc_2_contact_person: property(name: "loc_2_contact_person")
+      loc_2_timezone: property(name: "loc_2_timezone")
+      loc_2_schedule_format: property(name: "loc_2_schedule_format")
+      loc_2_mon_enable: property_boolean(name: "loc_2_mon_enable")
+      loc_2_mon_open: property(name: "loc_2_mon_open")
+      loc_2_mon_close: property(name: "loc_2_mon_close")
+      loc_2_tue_enable: property_boolean(name: "loc_2_tue_enable")
+      loc_2_tue_open: property(name: "loc_2_tue_open")
+      loc_2_tue_close: property(name: "loc_2_tue_close")
+      loc_2_wed_enable: property_boolean(name: "loc_2_wed_enable")
+      loc_2_wed_open: property(name: "loc_2_wed_open")
+      loc_2_wed_close: property(name: "loc_2_wed_close")
+      loc_2_thu_enable: property_boolean(name: "loc_2_thu_enable")
+      loc_2_thu_open: property(name: "loc_2_thu_open")
+      loc_2_thu_close: property(name: "loc_2_thu_close")
+      loc_2_fri_enable: property_boolean(name: "loc_2_fri_enable")
+      loc_2_fri_open: property(name: "loc_2_fri_open")
+      loc_2_fri_close: property(name: "loc_2_fri_close")
+      loc_2_sat_enable: property_boolean(name: "loc_2_sat_enable")
+      loc_2_sat_open: property(name: "loc_2_sat_open")
+      loc_2_sat_close: property(name: "loc_2_sat_close")
+      loc_2_sun_enable: property_boolean(name: "loc_2_sun_enable")
+      loc_2_sun_open: property(name: "loc_2_sun_open")
+      loc_2_sun_close: property(name: "loc_2_sun_close")
+      loc_2_notes: property(name: "loc_2_notes")
+      loc_2_phone: property(name: "loc_2_phone")
+      loc_2_phone_country_code: property(name: "loc_2_phone_country_code")
+      loc_2_phone_area_code: property(name: "loc_2_phone_area_code")
+      loc_2_phone_number: property(name: "loc_2_phone_number")
+      loc_2_fax: property(name: "loc_2_fax")
+      loc_2_fax_country_code: property(name: "loc_2_fax_country_code")
+      loc_2_fax_area_code: property(name: "loc_2_fax_area_code")
+      loc_2_fax_number: property(name: "loc_2_fax_number")
 
-        loc_4_name: property(name: "loc_4_name")
-        loc_4_email: property(name: "loc_4_email")
-        loc_4_contact_person: property(name: "loc_4_contact_person")
-        loc_4_timezone: property(name: "loc_4_timezone")
-        loc_4_schedule_format: property(name: "loc_4_schedule_format")
-        loc_4_mon_enable: property_boolean(name: "loc_4_mon_enable")
-        loc_4_mon_open: property(name: "loc_4_mon_open")
-        loc_4_mon_close: property(name: "loc_4_mon_close")
-        loc_4_tue_enable: property_boolean(name: "loc_4_tue_enable")
-        loc_4_tue_open: property(name: "loc_4_tue_open")
-        loc_4_tue_close: property(name: "loc_4_tue_close")
-        loc_4_wed_enable: property_boolean(name: "loc_4_wed_enable")
-        loc_4_wed_open: property(name: "loc_4_wed_open")
-        loc_4_wed_close: property(name: "loc_4_wed_close")
-        loc_4_thu_enable: property_boolean(name: "loc_4_thu_enable")
-        loc_4_thu_open: property(name: "loc_4_thu_open")
-        loc_4_thu_close: property(name: "loc_4_thu_close")
-        loc_4_fri_enable: property_boolean(name: "loc_4_fri_enable")
-        loc_4_fri_open: property(name: "loc_4_fri_open")
-        loc_4_fri_close: property(name: "loc_4_fri_close")
-        loc_4_sat_enable: property_boolean(name: "loc_4_sat_enable")
-        loc_4_sat_open: property(name: "loc_4_sat_open")
-        loc_4_sat_close: property(name: "loc_4_sat_close")
-        loc_4_sun_enable: property_boolean(name: "loc_4_sun_enable")
-        loc_4_sun_open: property(name: "loc_4_sun_open")
-        loc_4_sun_close: property(name: "loc_4_sun_close")
-        loc_4_phone: property(name: "loc_4_phone")
-        loc_4_phone_country_code: property(name: "loc_4_phone_country_code")
-        loc_4_phone_area_code: property(name: "loc_4_phone_area_code")
-        loc_4_phone_number: property(name: "loc_4_phone_number")
-        loc_4_fax: property(name: "loc_4_fax")
-        loc_4_fax_country_code: property(name: "loc_4_fax_country_code")
-        loc_4_fax_area_code: property(name: "loc_4_fax_area_code")
-        loc_4_fax_number: property(name: "loc_4_fax_number")
+      loc_3_name: property(name: "loc_3_name")
+      loc_3_email: property(name: "loc_3_email")
+      loc_3_contact_person: property(name: "loc_3_contact_person")
+      loc_3_timezone: property(name: "loc_3_timezone")
+      loc_3_schedule_format: property(name: "loc_3_schedule_format")
+      loc_3_mon_enable: property_boolean(name: "loc_3_mon_enable")
+      loc_3_mon_open: property(name: "loc_3_mon_open")
+      loc_3_mon_close: property(name: "loc_3_mon_close")
+      loc_3_tue_enable: property_boolean(name: "loc_3_tue_enable")
+      loc_3_tue_open: property(name: "loc_3_tue_open")
+      loc_3_tue_close: property(name: "loc_3_tue_close")
+      loc_3_wed_enable: property_boolean(name: "loc_3_wed_enable")
+      loc_3_wed_open: property(name: "loc_3_wed_open")
+      loc_3_wed_close: property(name: "loc_3_wed_close")
+      loc_3_thu_enable: property_boolean(name: "loc_3_thu_enable")
+      loc_3_thu_open: property(name: "loc_3_thu_open")
+      loc_3_thu_close: property(name: "loc_3_thu_close")
+      loc_3_fri_enable: property_boolean(name: "loc_3_fri_enable")
+      loc_3_fri_open: property(name: "loc_3_fri_open")
+      loc_3_fri_close: property(name: "loc_3_fri_close")
+      loc_3_sat_enable: property_boolean(name: "loc_3_sat_enable")
+      loc_3_sat_open: property(name: "loc_3_sat_open")
+      loc_3_sat_close: property(name: "loc_3_sat_close")
+      loc_3_sun_enable: property_boolean(name: "loc_3_sun_enable")
+      loc_3_sun_open: property(name: "loc_3_sun_open")
+      loc_3_sun_close: property(name: "loc_3_sun_close")
+      loc_3_notes: property(name: "loc_3_notes")
+      loc_3_phone: property(name: "loc_3_phone")
+      loc_3_phone_country_code: property(name: "loc_3_phone_country_code")
+      loc_3_phone_area_code: property(name: "loc_3_phone_area_code")
+      loc_3_phone_number: property(name: "loc_3_phone_number")
+      loc_3_fax: property(name: "loc_3_fax")
+      loc_3_fax_country_code: property(name: "loc_3_fax_country_code")
+      loc_3_fax_area_code: property(name: "loc_3_fax_area_code")
+      loc_3_fax_number: property(name: "loc_3_fax_number")
 
-        loc_5_name: property(name: "loc_5_name")
-        loc_5_email: property(name: "loc_5_email")
-        loc_5_contact_person: property(name: "loc_5_contact_person")
-        loc_5_timezone: property(name: "loc_5_timezone")
-        loc_5_schedule_format: property(name: "loc_5_schedule_format")
-        loc_5_mon_enable: property_boolean(name: "loc_5_mon_enable")
-        loc_5_mon_open: property(name: "loc_5_mon_open")
-        loc_5_mon_close: property(name: "loc_5_mon_close")
-        loc_5_tue_enable: property_boolean(name: "loc_5_tue_enable")
-        loc_5_tue_open: property(name: "loc_5_tue_open")
-        loc_5_tue_close: property(name: "loc_5_tue_close")
-        loc_5_wed_enable: property_boolean(name: "loc_5_wed_enable")
-        loc_5_wed_open: property(name: "loc_5_wed_open")
-        loc_5_wed_close: property(name: "loc_5_wed_close")
-        loc_5_thu_enable: property_boolean(name: "loc_5_thu_enable")
-        loc_5_thu_open: property(name: "loc_5_thu_open")
-        loc_5_thu_close: property(name: "loc_5_thu_close")
-        loc_5_fri_enable: property_boolean(name: "loc_5_fri_enable")
-        loc_5_fri_open: property(name: "loc_5_fri_open")
-        loc_5_fri_close: property(name: "loc_5_fri_close")
-        loc_5_sat_enable: property_boolean(name: "loc_5_sat_enable")
-        loc_5_sat_open: property(name: "loc_5_sat_open")
-        loc_5_sat_close: property(name: "loc_5_sat_close")
-        loc_5_sun_enable: property_boolean(name: "loc_5_sun_enable")
-        loc_5_sun_open: property(name: "loc_5_sun_open")
-        loc_5_sun_close: property(name: "loc_5_sun_close")
-        loc_5_phone: property(name: "loc_5_phone")
-        loc_5_phone_country_code: property(name: "loc_5_phone_country_code")
-        loc_5_phone_area_code: property(name: "loc_5_phone_area_code")
-        loc_5_phone_number: property(name: "loc_5_phone_number")
-        loc_5_fax: property(name: "loc_5_fax")
-        loc_5_fax_country_code: property(name: "loc_5_fax_country_code")
-        loc_5_fax_area_code: property(name: "loc_5_fax_area_code")
-        loc_5_fax_number: property(name: "loc_5_fax_number")
-        
-        po_1_num: property(name: "po_1_num")
-        po_2_num: property(name: "po_2_num")
+      loc_4_name: property(name: "loc_4_name")
+      loc_4_email: property(name: "loc_4_email")
+      loc_4_contact_person: property(name: "loc_4_contact_person")
+      loc_4_timezone: property(name: "loc_4_timezone")
+      loc_4_schedule_format: property(name: "loc_4_schedule_format")
+      loc_4_mon_enable: property_boolean(name: "loc_4_mon_enable")
+      loc_4_mon_open: property(name: "loc_4_mon_open")
+      loc_4_mon_close: property(name: "loc_4_mon_close")
+      loc_4_tue_enable: property_boolean(name: "loc_4_tue_enable")
+      loc_4_tue_open: property(name: "loc_4_tue_open")
+      loc_4_tue_close: property(name: "loc_4_tue_close")
+      loc_4_wed_enable: property_boolean(name: "loc_4_wed_enable")
+      loc_4_wed_open: property(name: "loc_4_wed_open")
+      loc_4_wed_close: property(name: "loc_4_wed_close")
+      loc_4_thu_enable: property_boolean(name: "loc_4_thu_enable")
+      loc_4_thu_open: property(name: "loc_4_thu_open")
+      loc_4_thu_close: property(name: "loc_4_thu_close")
+      loc_4_fri_enable: property_boolean(name: "loc_4_fri_enable")
+      loc_4_fri_open: property(name: "loc_4_fri_open")
+      loc_4_fri_close: property(name: "loc_4_fri_close")
+      loc_4_sat_enable: property_boolean(name: "loc_4_sat_enable")
+      loc_4_sat_open: property(name: "loc_4_sat_open")
+      loc_4_sat_close: property(name: "loc_4_sat_close")
+      loc_4_sun_enable: property_boolean(name: "loc_4_sun_enable")
+      loc_4_sun_open: property(name: "loc_4_sun_open")
+      loc_4_sun_close: property(name: "loc_4_sun_close")
+      loc_4_notes: property(name: "loc_4_notes")
+      loc_4_phone: property(name: "loc_4_phone")
+      loc_4_phone_country_code: property(name: "loc_4_phone_country_code")
+      loc_4_phone_area_code: property(name: "loc_4_phone_area_code")
+      loc_4_phone_number: property(name: "loc_4_phone_number")
+      loc_4_fax: property(name: "loc_4_fax")
+      loc_4_fax_country_code: property(name: "loc_4_fax_country_code")
+      loc_4_fax_area_code: property(name: "loc_4_fax_area_code")
+      loc_4_fax_number: property(name: "loc_4_fax_number")
 
-        loc_1_address: address(name: "loc_1_address") {
-          ...AddressProps
-        }
-        
-        loc_2_address: address(name: "loc_2_address") {
-          ...AddressProps
-        }
-        
-        loc_3_address: address(name: "loc_3_address") {
-          ...AddressProps
-        }
-        
-        loc_4_address: address(name: "loc_4_address") {
-          ...AddressProps
-        }
-        
-        loc_5_address: address(name: "loc_5_address") {
-          ...AddressProps
-        }
-        
-        po_1_address: address(name: "po_1_address") {
-          ...AddressProps
-        }
-        
-        po_2_address: address(name: "po_2_address") {
-          ...AddressProps
-        }
-        
-        company_logo: image(name: "company_logo") {
-          original: url(version: "transformed")
-        }
-        
-        company_icon: image(name: "company_icon") {
-          original: url(version: "transformed")
-        }
-        
-        loc_1_image: image(name: "loc_1_image") {
-          original: url(version: "transformed")
-        }
-        
-        loc_2_image: image(name: "loc_2_image") {
-          original: url(version: "transformed")
-        }
-        
-        loc_3_image: image(name: "loc_3_image") {
-          original: url(version: "transformed")
-        }
-        
-        loc_4_image: image(name: "loc_4_image") {
-          original: url(version: "transformed")
-        }
-        
-        loc_5_image: image(name: "loc_5_image") {
-          original: url(version: "transformed")
-        }
-        
+      loc_5_name: property(name: "loc_5_name")
+      loc_5_email: property(name: "loc_5_email")
+      loc_5_contact_person: property(name: "loc_5_contact_person")
+      loc_5_timezone: property(name: "loc_5_timezone")
+      loc_5_schedule_format: property(name: "loc_5_schedule_format")
+      loc_5_mon_enable: property_boolean(name: "loc_5_mon_enable")
+      loc_5_mon_open: property(name: "loc_5_mon_open")
+      loc_5_mon_close: property(name: "loc_5_mon_close")
+      loc_5_tue_enable: property_boolean(name: "loc_5_tue_enable")
+      loc_5_tue_open: property(name: "loc_5_tue_open")
+      loc_5_tue_close: property(name: "loc_5_tue_close")
+      loc_5_wed_enable: property_boolean(name: "loc_5_wed_enable")
+      loc_5_wed_open: property(name: "loc_5_wed_open")
+      loc_5_wed_close: property(name: "loc_5_wed_close")
+      loc_5_thu_enable: property_boolean(name: "loc_5_thu_enable")
+      loc_5_thu_open: property(name: "loc_5_thu_open")
+      loc_5_thu_close: property(name: "loc_5_thu_close")
+      loc_5_fri_enable: property_boolean(name: "loc_5_fri_enable")
+      loc_5_fri_open: property(name: "loc_5_fri_open")
+      loc_5_fri_close: property(name: "loc_5_fri_close")
+      loc_5_sat_enable: property_boolean(name: "loc_5_sat_enable")
+      loc_5_sat_open: property(name: "loc_5_sat_open")
+      loc_5_sat_close: property(name: "loc_5_sat_close")
+      loc_5_sun_enable: property_boolean(name: "loc_5_sun_enable")
+      loc_5_sun_open: property(name: "loc_5_sun_open")
+      loc_5_sun_close: property(name: "loc_5_sun_close")
+      loc_5_notes: property(name: "loc_5_notes")
+      loc_5_phone: property(name: "loc_5_phone")
+      loc_5_phone_country_code: property(name: "loc_5_phone_country_code")
+      loc_5_phone_area_code: property(name: "loc_5_phone_area_code")
+      loc_5_phone_number: property(name: "loc_5_phone_number")
+      loc_5_fax: property(name: "loc_5_fax")
+      loc_5_fax_country_code: property(name: "loc_5_fax_country_code")
+      loc_5_fax_area_code: property(name: "loc_5_fax_area_code")
+      loc_5_fax_number: property(name: "loc_5_fax_number")
+
+      po_1_box_number: property(name: "po_1_box_number")
+      po_2_box_number: property(name: "po_2_box_number")
+
+      loc_1_address: property(name: "loc_1_address")
+      loc_2_address: property(name: "loc_2_address")
+      loc_3_address: property(name: "loc_3_address")
+      loc_4_address: property(name: "loc_4_address")
+      loc_5_address: property(name: "loc_5_address")
+
+      loc_1_address_1: property(name: "loc_1_address_1")
+      loc_1_address_2: property(name: "loc_1_address_2")
+      loc_1_address_3: property(name: "loc_1_address_3")
+      loc_1_county: property(name: "loc_1_county")
+      loc_1_district: property(name: "loc_1_district")
+      loc_1_suburb: property(name: "loc_1_suburb")
+      loc_1_city: property(name: "loc_1_city")
+      loc_1_state: property(name: "loc_1_state")
+      loc_1_postcode: property(name: "loc_1_postcode")
+      loc_1_country: property(name: "loc_1_country")
+
+      loc_2_address_1: property(name: "loc_2_address_1")
+      loc_2_address_2: property(name: "loc_2_address_2")
+      loc_2_address_3: property(name: "loc_2_address_3")
+      loc_2_county: property(name: "loc_2_county")
+      loc_2_district: property(name: "loc_2_district")
+      loc_2_suburb: property(name: "loc_2_suburb")
+      loc_2_city: property(name: "loc_2_city")
+      loc_2_state: property(name: "loc_2_state")
+      loc_2_postcode: property(name: "loc_2_postcode")
+      loc_2_country: property(name: "loc_2_country")
+
+      loc_3_address_1: property(name: "loc_3_address_1")
+      loc_3_address_2: property(name: "loc_3_address_2")
+      loc_3_address_3: property(name: "loc_3_address_3")
+      loc_3_county: property(name: "loc_3_county")
+      loc_3_district: property(name: "loc_3_district")
+      loc_3_suburb: property(name: "loc_3_suburb")
+      loc_3_city: property(name: "loc_3_city")
+      loc_3_state: property(name: "loc_3_state")
+      loc_3_postcode: property(name: "loc_3_postcode")
+      loc_3_country: property(name: "loc_3_country")
+
+      loc_4_address_1: property(name: "loc_4_address_1")
+      loc_4_address_2: property(name: "loc_4_address_2")
+      loc_4_address_3: property(name: "loc_4_address_3")
+      loc_4_county: property(name: "loc_4_county")
+      loc_4_district: property(name: "loc_4_district")
+      loc_4_suburb: property(name: "loc_4_suburb")
+      loc_4_city: property(name: "loc_4_city")
+      loc_4_state: property(name: "loc_4_state")
+      loc_4_postcode: property(name: "loc_4_postcode")
+      loc_4_country: property(name: "loc_4_country")
+
+      loc_5_address_1: property(name: "loc_5_address_1")
+      loc_5_address_2: property(name: "loc_5_address_2")
+      loc_5_address_3: property(name: "loc_5_address_3")
+      loc_5_county: property(name: "loc_5_county")
+      loc_5_district: property(name: "loc_5_district")
+      loc_5_suburb: property(name: "loc_5_suburb")
+      loc_5_city: property(name: "loc_5_city")
+      loc_5_state: property(name: "loc_5_state")
+      loc_5_postcode: property(name: "loc_5_postcode")
+      loc_5_country: property(name: "loc_5_country")
+
+      # loc_1_address: address(name: "loc_1_address") {
+      #   ...AddressProps
+      # }
+
+      # loc_2_address: address(name: "loc_2_address") {
+      #   ...AddressProps
+      # }
+
+      # loc_3_address: address(name: "loc_3_address") {
+      #   ...AddressProps
+      # }
+
+      # loc_4_address: address(name: "loc_4_address") {
+      #   ...AddressProps
+      # }
+
+      # loc_5_address: address(name: "loc_5_address") {
+      #   ...AddressProps
+      # }
+
+      po_1_address: property(name: "po_1_address")
+      po_1_city: property(name: "po_1_city")
+      po_1_state: property(name: "po_1_state")
+      po_1_postcode: property(name: "po_1_postcode")
+      po_1_country: property(name: "po_1_country")
+      po_2_address: property(name: "po_2_address")
+      po_2_city: property(name: "po_2_city")
+      po_2_state: property(name: "po_2_state")
+      po_2_postcode: property(name: "po_2_postcode")
+      po_2_country: property(name: "po_2_country")
+
+      ## Company images
+      company_logo: property_upload(name: "company_logo") {
+        file_name
+        extension
+        url
+      }
+
+      company_icon: property_upload(name: "company_icon") {
+        file_name
+        extension
+        url
+      }
+
+      alternate_company_logo: property_upload(name: "alternate_company_logo") {
+        file_name
+        extension
+        url
+      }
+
+      alternate_company_icon: property_upload(name: "alternate_company_icon") {
+        file_name
+        extension
+        url
+      }
+
+      ## Email
+      email_logo: property_upload(name: "email_logo") {
+        file_name
+        extension
+        url
+      }
+
+      alternate_email_logo: property_upload(name: "alternate_email_logo") {
+        file_name
+        extension
+        url
+      }
+
+      ## Locations
+      loc_1_image: property_upload(name: "loc_1_image") {
+        file_name
+        extension
+        url
+      }
+      loc_2_image: property_upload(name: "loc_2_image") {
+        file_name
+        extension
+        url
+      }
+      loc_3_image: property_upload(name: "loc_3_image") {
+        file_name
+        extension
+        url
+      }
+      loc_4_image: property_upload(name: "loc_4_image") {
+        file_name
+        extension
+        url
+      }
+      loc_5_image: property_upload(name: "loc_5_image") {
+        file_name
+        extension
+        url
       }
     }
-}
-
-fragment AddressProps on CustomAddrress {
-    street_number
-    address
-    address2
-    street
-    city
-    state
-    country
-    postcode
-    iso_country_code
-    lat
-    lng
+  }
 }

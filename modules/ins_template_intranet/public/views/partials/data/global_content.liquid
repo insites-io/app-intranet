@@ -2,7 +2,7 @@
 Gets 'Insites Site Manger - Global Content' data and exports it to be usable as a 'partial' data export.
 {%- endcomment -%}
 
-{%- if context.modules.insites_site_manager -%}
+{%- if context.modules.insites_cms -%}
     {%- graphql global = 'modules/ins_template_intranet/system/get_global_content' -%}
     {%- assign global = global.items.results[0] -%}
 
