@@ -1,0 +1,33 @@
+---
+slug: support
+layout: modules/ins_template_intranet/documentation_layout
+searchable: true
+max_deep_level: 2,
+metadata: {
+  "page_name": "Support",
+  "database_id": "1764010",
+  "source_name": "modules/ins_template_intranet/support",
+  "is_list_layout_enabled": true,
+  "is_details_layout_enabled": true,  
+  "page_title": "Support",
+  "search_engine_visibility": "true"
+}
+dynamic_cache:
+  layout: true
+  key: |-
+    {%- parse_json models -%}
+        [
+        "modules/insites_cms/global",
+        "modules/ins_template_intranet/support"
+        ]
+    {%- endparse_json -%}
+    {%- include "modules/ins_template_intranet/generate_cache_key", models: models -%}
+---
+
+{%- if context.params.slug2 != blank -%}
+    {% include 'modules/ins_template_intranet/content/documentation/documentation-detail-collection', 
+        table_name: 'modules/ins_template_intranet/support' 
+    %}  
+{%- else -%}
+    {% include 'modules/ins_template_intranet/content/documentation/documentation-list-main' %}  
+{%- endif -%}

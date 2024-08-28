@@ -3,7 +3,8 @@ query get_news(
   $size: Int = 10,
 	$current_date: String,
   $category: String,
-  $keyword: String
+  $keyword: String,
+  $slug: String
 ) {
   items: records(
     page: $page,
@@ -13,6 +14,7 @@ query get_news(
       table: { value: "modules/ins_template_intranet/news" }, 
       properties: [
         { name: "status", value: "Published" },
+        { name: "slug", value: $slug },
         { name: "category", contains: $category },
         {name: "published_date", range: {lte: $current_date },
           
@@ -21,8 +23,6 @@ query get_news(
         properties: { name: "post_title", contains: $keyword }
       },
     },
-      
-    
     sort: [
       { properties: { name: "published_date", order: DESC } }
       { properties: { name: "order", order: ASC } }
@@ -42,6 +42,8 @@ query get_news(
         category: property(name: "category")
         author: property(name: "author")
         published_date: property(name: "published_date")
+        content_block_1: property(name: "content_block_1")
+        content_block_2: property(name: "content_block_2")
         image: property_upload(name: "image") {
           url
           file_name

@@ -1,0 +1,36 @@
+---
+slug: timeline
+layout: modules/ins_template_intranet/timeline_layout
+searchable: true
+max_deep_level: 2,
+metadata: {
+  "page_name": "Timeline",
+  "database_id": "1764011",
+  "source_name": "modules/ins_template_intranet/timeline",
+  "is_list_layout_enabled": true,
+  "is_details_layout_enabled": true,  
+  "page_title": "Timeline",
+  "search_engine_visibility": "true"
+}
+dynamic_cache:
+  layout: true
+  key: |-
+    {%- parse_json models -%}
+        [
+        "modules/insites_cms/global",
+        "modules/ins_template_intranet/timeline"
+        ]
+    {%- endparse_json -%}
+    {%- include "modules/ins_template_intranet/generate_cache_key", models: models -%}
+---
+
+{%- if context.params.slug2 != blank -%}
+    {%- graphql timeline = 'modules/ins_template_intranet/timeline/get_timeline_items',
+        slug: context.params.slug2 | dig: 'items','results' | first 
+    -%}   
+        
+    {% include 'modules/ins_template_intranet/content/timeline/timeline-detail-main', item: timeline %}    
+
+{%- else -%}
+    {% include 'modules/ins_template_intranet/content/timeline/timeline-list-main' %}
+{%- endif -%}

@@ -4,9 +4,10 @@ query get_timeline_items(
   $size: Int = 10, 
   $tag: String, 
   $status: String, 
-  $range: RangeFilter
+  $range: RangeFilter,
+  $slug: String
 ) {
-  items: models(
+  items: records(
     page: $page,
     per_page: $size,
     filter: {
@@ -14,10 +15,13 @@ query get_timeline_items(
       deleted_at: {
         exists: false
       },
-      model_schema_name: {
+      table: {
         value: "modules/ins_template_intranet/timeline"
       },
       properties: [
+        { name: "slug", 
+          value: $slug 
+        },
         {
           name: "category_tag",
           value: $tag
@@ -50,6 +54,9 @@ query get_timeline_items(
     results {
       id
       slug: property(name: "slug")
+      status: property(name: "status")
+      detailed_content: property(name: "detailed_content")
+      author: property(name: "author")
       title: property(name: "title")
       category_tag: property(name: "category_tag")
       published_date: property(name: "published_date")

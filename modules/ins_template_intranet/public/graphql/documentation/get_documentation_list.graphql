@@ -2,6 +2,7 @@ query get_documentation_list(
   $page: Int = 1, 
   $size: Int = 10, 
   $status: String,
+  $slug: String,
   $database_schema: String!) {
   items: models(
     page: $page,
@@ -18,6 +19,10 @@ query get_documentation_list(
           {
             name: "status",
             value: $status
+          },
+           { 
+            name: "slug", 
+            value: $slug 
           }
         ]
     },
@@ -42,6 +47,9 @@ query get_documentation_list(
       section: property(name: "section")
       title: property(name: "title")
       published_date: property(name: "published_date")
+      content_block_1: property(name: "content_block_1")
+      content_block_2: property(name: "content_block_2")
+      status: property(name: "status")
     }
   }
 }
