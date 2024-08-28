@@ -1,0 +1,24 @@
+---
+  metadata: {
+    layout_name: "insites_empty_layout"
+  }
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="{{ desc }}">
+    <meta content="{{ context.authenticity_token }}" name="csrf-token">
+    <title>Insites Admin</title>
+    {%- include 'modules/insites_core/insites_admin/dependencies' -%}
+  </head>
+  <body style="background-color: #fafbfc">
+    <div class="content-wrap">
+      {{ content_for_layout }}
+    </div>
+
+    {% comment %} {% include 'modules/insites_core/insites_admin/insites_footer_scripts' -%} {% endcomment %}
+  </body>
+</html>
