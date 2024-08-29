@@ -2,6 +2,10 @@
 name: only_allowed_if_ins_administrator
 redirect_to: 401
 flash_alert: Please login as administrator to access this page.
+metadata: {
+    "auth_policy_key": "only_allowed_if_ins_administrator",
+    "auth_policy_name": "only_allowed_if_ins_administrator"
+}
 ---
 
 {% graphql data = 'modules/ins_template_intranet/session/get_current_user' %}
