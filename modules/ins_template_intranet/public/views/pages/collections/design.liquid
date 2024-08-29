@@ -10,7 +10,8 @@ metadata: {
   "is_list_layout_enabled": true,
   "is_details_layout_enabled": true,  
   "page_title": "Design",
-  "search_engine_visibility": "true"
+  "search_engine_visibility": "true",
+  "is_auth_policy_enabled": true
 }
 dynamic_cache:
   layout: true
@@ -22,6 +23,9 @@ dynamic_cache:
         ]
     {%- endparse_json -%}
     {%- include "modules/ins_template_intranet/generate_cache_key", models: models -%}
+authorization_policies:
+  - modules/ins_template_intranet/only_allowed_if_logged_in
+  - modules/ins_template_intranet/only_allowed_if_ins_administrator
 ---
 
 {%- if context.params.slug2 != blank -%}
