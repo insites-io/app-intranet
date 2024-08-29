@@ -1,3 +1,8 @@
+---
+  metadata: {
+    partial_name: "docu-breadcrumbs"
+  }
+---
 {%- comment -%}breadcrumbs for docu layout{%- endcomment -%}
 {%- assign title = context.params.slug | replace: "-", " " | capitalize -%}
 {%- assign main_link = "/" | append: context.page.slug | append: '/'  -%}

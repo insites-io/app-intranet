@@ -1,3 +1,8 @@
+---
+  metadata: {
+    partial_name: "timeline-tag-filter"
+  }
+---
 {%- graphql res = "modules/ins_template_intranet/timeline/get_schema_metadata" -%}
 
 {%- assign props = res.items.results.first.properties -%}

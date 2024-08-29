@@ -1,3 +1,8 @@
+---
+  metadata: {
+    partial_name: "company-news"
+  }
+---
 {% graphql news_preview = "modules/ins_template_intranet/news/get_news", size: 3 %}
 {%- assign news_preview_list = news_preview.items.results -%}
 

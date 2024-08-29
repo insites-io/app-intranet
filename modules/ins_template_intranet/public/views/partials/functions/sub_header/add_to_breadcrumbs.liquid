@@ -1,3 +1,8 @@
+---
+  metadata: {
+    partial_name: "add-to-breadcrumbs"
+  }
+---
 {%- liquid 
   assign breadcrumb = '{}' | parse_json
   assign breadcrumb = breadcrumb | add_hash_key: "label", label
