@@ -7,25 +7,28 @@ query search_all_documentation(
   records(
     page: $page, 
     per_page: , $size
-  filter: {
-    fulltext: {
-      keyword: $keyword, 
-      match_type: CONTAINS, 
-      operator: OR,
-      }, 
-    table: {value_in: [
-      "modules/ins_template_intranet/support", 
-      "modules/ins_template_intranet/delivery",
-      "modules/ins_template_intranet/design",
-      "modules/ins_template_intranet/developers",
-      "modules/ins_template_intranet/marketing",
-      "modules/ins_template_intranet/sales",
-      "modules/ins_template_intranet/support"
-    ]}, 
-    properties: {
-      name: "status", value: $status,
-    },
-    
+    filter: {
+      table: {value_in: [
+        "modules/ins_template_intranet/support", 
+        "modules/ins_template_intranet/delivery",
+        "modules/ins_template_intranet/design",
+        "modules/ins_template_intranet/developers",
+        "modules/ins_template_intranet/marketing",
+        "modules/ins_template_intranet/sales",
+        "modules/ins_template_intranet/support"
+      ]}, 
+      properties: {
+        name: "status", value: $status,
+      },
+      or: [
+        { properties: [{ name: "section", contains: $keyword }]},
+        { properties: [{ name: "title", contains: $keyword }]},
+        { properties: [{ name: "content_block_1", contains: $keyword }]},
+        { properties: [{ name: "content_block_2", contains: $keyword }]},
+        { properties: [{ name: "short_description", contains: $keyword }]},
+        { properties: [{ name: "menu_label", contains: $keyword }]},
+        { properties: [{ name: "author", contains: $keyword }]}
+      ]
   }) {
     total_entries
     total_entries

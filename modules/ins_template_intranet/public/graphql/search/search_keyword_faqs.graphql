@@ -9,16 +9,28 @@ query search_keyword_faqs (
     page: $page, 
     per_page: , $size
   filter: {
-    fulltext: {
-      keyword: $keyword, 
-      match_type: CONTAINS, 
-      operator: OR,
-      }, 
     table: {value_in: $schema}, 
     properties: {
-      name: "status", value: $status,
+      name: "status", value: $status, 
     },
-    
+    or: [
+      {
+        properties: [
+          { 
+            name: "question",
+            contains: $keyword
+          }
+        ]
+      },
+      {
+        properties: [
+          { 
+            name: "answer",
+            contains: $keyword
+          }
+        ]
+      }
+    ]
   }) {
     total_entries
     total_entries
