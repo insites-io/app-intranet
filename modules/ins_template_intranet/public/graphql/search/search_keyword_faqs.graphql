@@ -9,7 +9,7 @@ query search_keyword_faqs (
     page: $page, 
     per_page: , $size
   filter: {
-    table: {value_in: $schema}, 
+    table: { value: $schema },
     properties: {
       name: "status", value: $status, 
     },
