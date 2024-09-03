@@ -21,7 +21,7 @@ dynamic_cache:
         "modules/ins_template_intranet/design"
         ]
     {%- endparse_json -%}
-    {%- include "modules/ins_template_intranet/generate_cache_key", models: models -%}
+    {%- include "modules/ins_template_intranet/system/generate_cache_key", models: models -%}
 authorization_policies:
   - modules/ins_template_intranet/only_allowed_if_logged_in
   - modules/ins_template_intranet/only_allowed_if_ins_administrator
