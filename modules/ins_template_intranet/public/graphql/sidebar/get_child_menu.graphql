@@ -3,12 +3,12 @@ query get_child_menu(
 	$date_now: String,
 	$parent_id: String
 ) {
-  items: models(
+  items: records(
     page: 1
     per_page: 1000
     filter: {
       deleted_at: { exists: false }
-      model_schema_name: { value: $database_schema }
+      table: { value: $database_schema }
       properties: [
         { name: "status", value: "Published" },
         { name: "show_in_sidebar", value_boolean: true },

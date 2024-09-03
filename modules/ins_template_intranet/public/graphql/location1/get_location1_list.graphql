@@ -2,14 +2,14 @@ query get_location1_list(
   $page: Int = 1, 
   $size: Int = 10, 
   $status: String ) {
-  items: models(
+  items: records(
     page: $page,
     per_page: $size,
     filter: {
       deleted_at: {
         exists: false
       },
-      model_schema_name: {
+      table: {
         value: "modules/ins_template_intranet/location_1"
       },
       properties: 

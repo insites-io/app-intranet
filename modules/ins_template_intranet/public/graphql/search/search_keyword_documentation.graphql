@@ -6,7 +6,7 @@ query search_keyword_documentation (
   $schema: String,
   $status: String
 ) {
-  items: models(
+  items: records(
     page: $page,
     per_page: $size,
     filter: {
@@ -19,7 +19,7 @@ query search_keyword_documentation (
       deleted_at: { 
         exists: false
       },
-      model_schema_name: { 
+      table: { 
         value: $schema 
       },
       or: [

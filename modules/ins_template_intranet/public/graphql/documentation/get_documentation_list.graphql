@@ -4,14 +4,14 @@ query get_documentation_list(
   $status: String,
   $slug: String,
   $database_schema: String!) {
-  items: models(
+  items: records(
     page: $page,
     per_page: $size,
     filter: {
       deleted_at: {
         exists: false
       },
-      model_schema_name: {
+      table: {
         value: $database_schema
       },
       properties: 

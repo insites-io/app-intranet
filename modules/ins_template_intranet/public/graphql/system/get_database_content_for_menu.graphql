@@ -3,14 +3,14 @@ query get_database_content_for_menu(
 	$size: Int = 1000,
   $database_name: String
 ) {
-  items: models(
+  items: records(
     page: $page,
     per_page: $size,
     filter: {
       deleted_at: {
         exists: false
       },
-      model_schema_name: {
+      table: {
         value: $database_name
       },
       properties: [
