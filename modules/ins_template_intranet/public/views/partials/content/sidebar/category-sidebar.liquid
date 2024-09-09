@@ -13,7 +13,7 @@ database_name: database_name
 {%- for property in properties -%}
 
 {%- if property.name == "category" -%}
-{%- assign categories = property.metadata.values -%}
+{%- assign categories = property.metadata.options -%}
 {%- endif -%}
 {%- endfor -%}
 
