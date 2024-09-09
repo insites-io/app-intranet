@@ -52,7 +52,9 @@
                 <h2>{{ ti.title }}</h2>
                 <div class="spacer small"></div>
                 <div class="timeline-content-block">
-                  {{ ti.timeline_content | markdown }}
+                  <ins-markdown
+                      value="{{ ti.timeline_content }}">
+                  </ins-markdown>
                 </div>
 
                 {%- if ti.enable_details_page -%}

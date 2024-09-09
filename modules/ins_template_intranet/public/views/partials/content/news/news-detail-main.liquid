@@ -113,10 +113,14 @@ News: Details view
           </div>
 
           <div class="content-block-holder dynamic-content inner-wrap markdown-block" id="dynamic-content-wrapper">
-            {{ item.content_block_1 | markdown }}
+            <ins-markdown
+                value="{{ item.content_block_1 }}">
+            </ins-markdown>
             {%- if item.content_block_2 -%}
             <div class="spacer"></div>
-            {{ item.content_block_2 | markdown }}
+            <ins-markdown
+                value="{{ item.content_block_2 }}">
+            </ins-markdown>
             {%- endif -%}
           </div>
         </div>
