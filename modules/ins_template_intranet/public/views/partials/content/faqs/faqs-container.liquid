@@ -49,7 +49,9 @@
           <ins-accordion>
             {%- for faq in faqs.items.results -%}
             <ins-accordion-item heading="{{ faq.question }}" open-icon="icon-plus" close-icon="icon-minus">
-              {{ faq.answer }}
+              <ins-markdown
+                value="{{ faq.answer }}">
+              </ins-markdown>
               {%- if faq.attachment_download.url -%}
               <div class="spacer small"></div>
               <hr />

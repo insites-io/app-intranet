@@ -20,7 +20,9 @@ status: "Published"
   <ins-accordion>
     {%- for item in homepage_faqs -%}
     <ins-accordion-item heading="{{ item.question }}" open-icon="icon-plus" close-icon="icon-minus">
-      {{ item.answer }}
+      <ins-markdown
+        value="{{ item.answer }}">
+      </ins-markdown>
       {%- if item.attachment_download.url -%}
       <div class="spacer small"></div>
       <hr />
