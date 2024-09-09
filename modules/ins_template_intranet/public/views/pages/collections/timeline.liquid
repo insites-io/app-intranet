@@ -28,12 +28,16 @@ authorization_policies:
 ---
 
 {%- if context.params.slug2 != blank -%}
-    {%- graphql timeline = 'modules/ins_template_intranet/timeline/get_timeline_items',
-        slug: context.params.slug2 | dig: 'items','results' | first 
-    -%}   
-        
-    {% include 'modules/ins_template_intranet/content/timeline/timeline-detail-main', item: timeline %}    
+  {%- graphql timeline = 'modules/ins_template_intranet/timeline/get_timeline_items',
+      slug: context.params.slug2 | dig: 'items', 'results' | first 
+  -%}   
 
+  {%- if timeline and timeline.enable_details_page == "true" -%}
+      {% include 'modules/ins_template_intranet/content/timeline/timeline-detail-main', item: timeline %}   
+  {%- else -%}
+      {% redirect_to '/404' %} 
+  {%- endif -%}
+  
 {%- else -%}
-    {% include 'modules/ins_template_intranet/content/timeline/timeline-list-main' %}
+  {% include 'modules/ins_template_intranet/content/timeline/timeline-list-main' %}
 {%- endif -%}
