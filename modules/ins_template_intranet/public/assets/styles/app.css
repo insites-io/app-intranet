@@ -511,7 +511,7 @@
   }
   
   .ins-accordion-item_header>.inner-head:hover {
-    border-color: var(--color-main, #116EC3);
+    border-color: var(--color-main, #116EC3) !important;
   }
   
   .ins-carousel_ctrl-btns,

@@ -3,7 +3,8 @@
     partial_name: "news-search"
   }
 ---
-<div class="blocks-hero-04 wrapper">
+<div class="blocks-hero-04 wrapper"
+  style="background-image: url('{{ 'modules/ins_template_intranet/images/Hero@1.5x.webp' | asset_url }}');">
   <div class="grid-container">
     <div class="spacer xxxx-large"></div>
     <div class="grid-x align-center">
@@ -19,17 +20,6 @@
     <div class="spacer xxxx-large"></div>
   </div>
 </div>
-
-<style>
-  .blocks-hero-04.wrapper {
-    background-image: url('{{ 'modules/ins_template_intranet/images/Hero@1.5x.webp' | asset_url }}');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: auto; 
-    position: relative; 
-  }
-</style>
 
 <script>
   let newsSearch = document.getElementById('news-search');
@@ -50,9 +40,15 @@
 </script>
 
 <style>
-    .image img {
-        width: 100%; /* Sets the image width to 100% of its parent container */
-        height: auto; /* Maintains the original aspect ratio */
-        display: block; /* Prevents any extra space below the image */
+  .image img {
+      width: 100%; 
+      height: auto; 
+      display: block; 
+  }
+
+  @media (max-width: 1023px) {
+    .blocks-hero-04.wrapper {
+      padding-top: 7px;
     }
+  }
 </style>

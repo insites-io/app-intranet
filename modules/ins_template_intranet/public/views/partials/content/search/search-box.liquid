@@ -3,16 +3,17 @@
     partial_name: "search-box"
   }
 ---
-<div class="blocks-hero-04 wrapper" style="background-image: url('{{ 'modules/ins_template_intranet/images/Hero@1.5x.webp' | asset_url }}');">
+<div class="blocks-hero-04 wrapper"
+  style="background-image: url('{{ 'modules/ins_template_intranet/images/Hero@1.5x.webp' | asset_url }}');">
   <div class="grid-container">
     <div class="spacer xxxx-large"></div>
     <div class="grid-x align-center">
       <div class="large-6 medium-10 small-12 cell">
         <div class="title">
           {%- if context.params.keyword and context.params.keyword != "" -%}
-          Search Results for {{ context.params.keyword | truncate: 100, " ..." }}
-          {%- else -%}
-          Insites Intranet
+            Search result for "{{ context.params.keyword | truncate: 100, " ..." }}"
+            {%- else -%}
+            Insites Intranet
           {%- endif -%}
         </div>
         <div class="spacer large"></div>
@@ -41,3 +42,11 @@
   }
 
 </script>
+
+<style>
+  @media (max-width: 1023px) {
+    .blocks-hero-04.wrapper {
+      padding-top: 7px;
+    }
+  }
+</style>

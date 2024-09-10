@@ -20,43 +20,12 @@ database_name: 'modules/ins_template_intranet/location_2'
       <ins-dropdown-item label="Support"
         link="/support">
       </ins-dropdown-item>
-      <ins-dropdown-item label="Sales"
-        link="/sales">
-      </ins-dropdown-item>
       <ins-dropdown-item label="Developers"
         link="/developers">
-      </ins-dropdown-item>
-      <ins-dropdown-item label="Delivery"
-        link="/delivery">
       </ins-dropdown-item>
       <ins-dropdown-item label="Design"
         link="/design">        
       </ins-dropdown-item>
-      <ins-dropdown-item label="Marketing"
-        link="/marketing">        
-      </ins-dropdown-item>
-    </ins-dropdown>
-  </li>
-  <li>
-    <ins-dropdown label="Location 1" link="/location-1" link-title="Location 1">
-      {%- for location_1_item in location_1_items -%}
-      {%- if location_1_item.parent_category == null -%}
-      <ins-dropdown-item label="{{- location_1_item.title-}}"
-        link="/location-1/{{- location_1_item.slug -}}">
-      </ins-dropdown-item>
-      {%- endif -%}
-      {%- endfor -%}
-    </ins-dropdown>
-  </li>
-  <li>
-    <ins-dropdown label="Location 2" link="/location-2" link-title="Location 2" class="loc-2-dropdown">
-      {%- for location_2_item in location_2_items -%}
-      {%- if location_2_item.parent_category == null -%}
-      <ins-dropdown-item label="{{- location_2_item.title-}}"
-        link="/location-2/{{- location_2_item.slug -}}">
-      </ins-dropdown-item>
-      {%- endif -%}
-      {%- endfor -%}
     </ins-dropdown>
   </li>
   <li {% if context.params.slug=='news' %}class="active" {%- endif -%}>
