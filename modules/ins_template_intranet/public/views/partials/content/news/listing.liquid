@@ -78,9 +78,7 @@ keyword: page_keyword
         </ins-tag>
         <div class="spacer small"></div>
         <div class="spacer large font-small news-details">
-          <a class="color-font-head" data-test="">
-            <h2 class="heading-2 font-blue">{{ news.post_title }}</h2>
-          </a>
+          <a class="color-font-head heading-2 font-blue">{{ news.post_title }}</a>
           <div class="spacer small"></div>
           <p class="subhead-2 color-font-sub">
             Published on {{ news.published_date | strftime: '%b %d, %Y', 'Sydney' }}
