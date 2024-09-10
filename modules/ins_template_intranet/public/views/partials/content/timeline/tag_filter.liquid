@@ -11,7 +11,7 @@
 
     {%- if prop.name == "category_tag" -%}
         {%- assign options = "All" | split: ',' -%}
-        {%- assign options = options | add_to_array: prop.metadata.values | flatten -%}
+        {%- assign options = options | add_to_array: prop.metadata.options | flatten -%}
         {%- assign tag = context.params.tag | default: "" -%}
         {%- assign has_category = options | any: category -%}
 

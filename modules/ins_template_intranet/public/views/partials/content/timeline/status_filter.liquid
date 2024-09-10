@@ -12,7 +12,7 @@
       {%- if prop.name == "status" -%}
 
         {%- assign options = "All" | split: ',' -%}
-        {%- assign options = options | add_to_array: prop.metadata.values | flatten -%}
+        {%- assign options = options | add_to_array: prop.metadata.options | flatten -%}
         {%- assign status = context.params.status | default: "" -%}
         
         {%- export status, namespace: 'filters' -%}
