@@ -11,7 +11,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Marketing</a>
+            <a href="/marketing" class="navigation-level-1 color-font-head">Marketing</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_marketing_item in footer_marketing_items -%}
@@ -30,7 +30,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Support</a>
+            <a href="/support" class="navigation-level-1 color-font-head">Support</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_support_item in footer_support_items -%}
@@ -49,7 +49,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Developers</a>
+            <a href="/developers"  class="navigation-level-1 color-font-head">Developers</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_developers_item in footer_developers_items -%}
@@ -68,7 +68,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Delivery</a>
+            <a href="/delivery"  class="navigation-level-1 color-font-head">Delivery</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_delivery_item in footer_delivery_items -%}
@@ -87,7 +87,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Design</a>
+            <a href="/design"  class="navigation-level-1 color-font-head">Design</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_design_item in footer_design_items -%}
@@ -107,7 +107,7 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Sales</a>
+            <a href="/sales"  class="navigation-level-1 color-font-head">Sales</a>
             <div class="spacer"></div>
           </li>
           {%- for footer_sales_item in footer_sales_items -%}
@@ -132,35 +132,16 @@
         <!-- link set -->
         <ul class="vertical menu">
           <li>
-            <a class="navigation-level-1 color-font-head">Location 1</a>
+            <a href="/location-1"  class="navigation-level-1 color-font-head">Location 1</a>
             <div class="spacer"></div>
           </li>
-
-          {%- for footer_location_1_item in footer_location_1_items -%}
-          {%- if footer_location_1_item.parent_category == null -%}
-          <li>
-            <a href="/location-1/{{ footer_location_1_item.slug }}" class="footer-links color-font-head">{{
-              footer_location_1_item.title }}</a>
-            <div class="spacer x-small"></div>
-          </li>
-          {%- endif -%}
-          {%- endfor -%}
         </ul>
         <ul class="vertical menu">
           <li>
             <div class="spacer"></div>
-            <a class="navigation-level-1 color-font-head">Location 2</a>
+            <a href="/location-2"  class="navigation-level-1 color-font-head">Location 2</a>
             <div class="spacer"></div>
           </li>
-          {%- for footer_location_2_item in footer_location_2_items -%}
-          {%- if footer_location_2_item.parent_category == null -%}
-          <li>
-            <a href="/location-2/{{ footer_location_2_item.slug }}" class="footer-links color-font-head">{{
-              footer_location_2_item.title }}</a>
-            <div class="spacer x-small"></div>
-          </li>
-          {%- endif -%}
-          {%- endfor -%}
         </ul>
         <!-- /link set -->
       </div>
