@@ -1,4 +1,4 @@
-query get_faqs($page: Int = 1, $size: Int = 9, $category: String, $featured: Boolean, $status: String ) {
+query get_faqs($page: Int = 1, $size: Int = 10, $category: String, $featured: Boolean, $status: String ) {
   items: records(
     page: $page,
     per_page: $size,
