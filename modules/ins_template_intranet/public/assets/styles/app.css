@@ -215,12 +215,15 @@
   }
   
   hr {
-    max-width: 100%;
+    max-width: 100%; 
     margin: 0 auto;
     border-bottom: 1px solid var(--color-ui-04, #E4E6EC);
   }
-  
-  
+
+  .app-wrap.docu-layout-list .wrapper .items > hr {
+    width: 0% !important;
+  }
+
   /**********
   [Foundation Style Customization / Overwrite]
   **********/

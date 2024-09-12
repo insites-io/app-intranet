@@ -5,29 +5,9 @@
 ---
 <div class="grid-x grid-padding-x gutter-medium footer-linkset-large">
   <div class="large-9 medium-12 small-12 cell">
-    <!-- 6 set -->
     <div class="grid-x grid-padding-x">
-      <div class="large-2 cell">
-        <!-- link set -->
-        <ul class="vertical menu">
-          <li>
-            <a href="/marketing" class="navigation-level-1 color-font-head">Marketing</a>
-            <div class="spacer"></div>
-          </li>
-          {%- for footer_marketing_item in footer_marketing_items -%}
-          {%- if footer_marketing_item.parent_category == null -%}
-          <li>
-            <a href="/marketing/{{ footer_marketing_item.slug }}"
-              class="footer-links color-font-head">{{ footer_marketing_item.title }}</a>
-            <div class="spacer x-small"></div>
-          </li>
-          {%- endif -%}
-          {%- endfor -%}
-        </ul>
-        <!-- /link set -->
-      </div>
-      <div class="large-2 cell">
-        <!-- link set -->
+      <!-- Support -->
+      <div class="large-3 cell">
         <ul class="vertical menu">
           <li>
             <a href="/support" class="navigation-level-1 color-font-head">Support</a>
@@ -43,10 +23,9 @@
           {%- endif -%}
           {%- endfor -%}
         </ul>
-        <!-- /link set -->
       </div>
-      <div class="large-2 cell">
-        <!-- link set -->
+      <!-- Developers -->
+      <div class="large-3 cell">
         <ul class="vertical menu">
           <li>
             <a href="/developers"  class="navigation-level-1 color-font-head">Developers</a>
@@ -62,29 +41,9 @@
           {%- endif -%}
           {%- endfor -%}
         </ul>
-        <!-- /link set -->
       </div>
-      <div class="large-2 cell">
-        <!-- link set -->
-        <ul class="vertical menu">
-          <li>
-            <a href="/delivery"  class="navigation-level-1 color-font-head">Delivery</a>
-            <div class="spacer"></div>
-          </li>
-          {%- for footer_delivery_item in footer_delivery_items -%}
-          {%- if footer_delivery_item.parent_category == null -%}
-          <li>
-            <a href="/delivery/{{ footer_delivery_item.slug }}" class="footer-links color-font-head">{{
-              footer_delivery_item.title }}</a>
-            <div class="spacer x-small"></div>
-          </li>
-          {%- endif -%}
-          {%- endfor -%}
-        </ul>
-        <!-- /link set -->
-      </div>
-      <div class="large-2 cell">
-        <!-- link set -->
+      <!-- Design -->
+      <div class="large-3 cell">
         <ul class="vertical menu">
           <li>
             <a href="/design"  class="navigation-level-1 color-font-head">Design</a>
@@ -101,52 +60,15 @@
           {%- endfor -%}
 
         </ul>
-        <!-- /link set -->
       </div>
-      <div class="large-2 cell">
-        <!-- link set -->
-        <ul class="vertical menu">
-          <li>
-            <a href="/sales"  class="navigation-level-1 color-font-head">Sales</a>
-            <div class="spacer"></div>
-          </li>
-          {%- for footer_sales_item in footer_sales_items -%}
-          {%- if footer_sales_item.parent_category == null -%}
-          <li>
-            <a href="/sales/{{ footer_sales_item.slug }}" class="footer-links color-font-head">{{
-              footer_sales_item.title }}</a>
-            <div class="spacer x-small"></div>
-          </li>
-          {%- endif -%}
-          {%- endfor -%}
-        </ul>
-        <!-- /link set -->
-      </div>
+      <div class="large-3 cell"></div>
     </div>
-    <!-- /6 set -->
   </div>
   <div class="large-3 medium-12 small-12 cell">
-    <!-- 2 set-->
     <div class="grid-x grid-padding-x">
+      <div class="large-6 cell"></div>
+      <!-- News, FAQ, Timeline -->
       <div class="large-6 cell">
-        <!-- link set -->
-        <ul class="vertical menu">
-          <li>
-            <a href="/location-1"  class="navigation-level-1 color-font-head">Location 1</a>
-            <div class="spacer"></div>
-          </li>
-        </ul>
-        <ul class="vertical menu">
-          <li>
-            <div class="spacer"></div>
-            <a href="/location-2"  class="navigation-level-1 color-font-head">Location 2</a>
-            <div class="spacer"></div>
-          </li>
-        </ul>
-        <!-- /link set -->
-      </div>
-      <div class="large-6 cell">
-        <!-- link set -->
         <ul class="vertical menu">
           <li>
             <a href="/news" class="navigation-level-1 color-font-head">News</a>
@@ -161,9 +83,7 @@
             <div class="spacer x-small"></div>
           </li>
         </ul>
-        <!-- /link set -->
       </div>
     </div>
-    <!-- /2 set -->
   </div>
 </div>

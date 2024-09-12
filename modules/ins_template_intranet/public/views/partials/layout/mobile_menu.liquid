@@ -4,20 +4,27 @@
   }
 ---
 <div class="navigation-04 drawer-holder">
-  <ins-drawer no-padding id="mobile-menu" show-header=false position="right">
+  <ins-drawer id="mobile-menu" show-header=false position="right" style="padding-top: 21px;">
     <div>
       <ul class="vertical menu">
         <!-- normal list -->
         <li>
-          <a href="location-1" {% if context.params.slug=='location-1' %}class="active" {%- endif -%}>
-            Location 1
+          <a href="/support" {% if context.params.slug=='Support' %}class="active" {%- endif -%}>
+            Support
           </a>
         </li>
         <!-- /normal list -->
         <!-- normal list -->
         <li>
-          <a href="location-2" {% if context.params.slug=='location-2' %}class="active" {%- endif -%}>
-            Location 2
+          <a href="/developers" {% if context.params.slug=='developers' %}class="active" {%- endif -%}>
+            Developers
+          </a>
+        </li>
+        <!-- /normal list -->
+        <!-- normal list -->
+        <li>
+          <a href="/design" {% if context.params.slug=='design' %}class="active" {%- endif -%}>
+            Design
           </a>
         </li>
         <!-- /normal list -->

@@ -18,7 +18,7 @@ properties:
   metadata:
     label: "Category"
     weight: 5
-    options: ["Company","HR","Location 1","Location 2","Marketing","Sales","Support","Design","Delivery","Developers"]
+    options: ["Company","HR","Marketing","Sales","Support","Design","Delivery","Developers"]
     group_id: "ffb4f8fd-f5de-43c3-8978-604b59e82e01"
     ui_element: "select"
     is_required: true

@@ -29,12 +29,12 @@ dynamic_cache:
     {%- endparse_json -%}
     {%- include "modules/ins_template_intranet/system/generate_cache_key", models: models -%}
 ---
-
+{%- include 'modules/ins_template_intranet/layout/sub_header' -%}
 <div class="grid-x policies-container" >
-    
     <div id="privacy-policy" class="legal inner-wrap staticFonts" data-test="page-privacy-policy">
         <div class="spacer xxxx-large"></div>
-        <h3 class="spacer" style="text-align: center;">Privacy Policy</h3>
+        <h1 class="spacer" style="text-align: center;">Privacy Policy</h1>
+        <div class="spacer xxxx-large"></div>
         <!-- prefix -->
         <div id="privacy-prefix">
             <p class="spacer">This is the privacy notice of {{ global.company_name | strip }}. In this document, "we" or "us" refers to {{ global.company_name | strip }}.</p>

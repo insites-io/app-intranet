@@ -45,7 +45,7 @@
                     label="{{ ti.category_tag }}">
                   </ins-tag>
                   <span class="date">
-                    {{ ti.published_date }}
+                    {{ ti.published_date | date: "%d %B %Y" }}
                   </span>
                 </div>
                 <div class="spacer small"></div>
