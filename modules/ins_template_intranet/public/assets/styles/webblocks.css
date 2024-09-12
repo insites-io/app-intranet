@@ -84,6 +84,16 @@
   font-weight: 700;
 }
 
+.blocks-hero-04.wrapper {
+  padding-top: 14px;
+}
+
+@media (max-width: 1023px) {
+  .blocks-hero-04.wrapper {
+    padding-top: 22px !important;
+  }
+}
+
 /******* End: hero-04 *******/
 
 

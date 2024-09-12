@@ -39,7 +39,7 @@ properties:
   metadata:
     label: "Category"
     weight: 5
-    options: ["Design","Sales","Support","Developers","Marketing","Delivery"]
+    options: ["Support","Developers","Design"]
     group_id: "cbd59e01-097a-4b5e-a47c-066150f052fe"
     ui_element: "select_multiple"
     is_required: true
