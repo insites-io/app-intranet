@@ -2107,8 +2107,7 @@ footer.blocks-footer-02 .bottom-footer a {
 }
 
 .navigation-04.header {
-  border-bottom: 1px solid var(--color-ui-03, #F2F4F8);;
-  max-height: 107px;
+  border-bottom: 1px solid var(--color-ui-03, #F2F4F8);
 }
 
 .navigation-04 .header-top-bar ins-button.hide-for-small-only {
