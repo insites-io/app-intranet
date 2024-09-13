@@ -3558,26 +3558,6 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
 
 }
 
-.news-detail ins-tag.tag-location-1 > span,
-.news-listing ins-tag.tag-location-1 > span {
-
-}
-
-.news-detail ins-tag.tag-location-2 > span,
-.news-listing ins-tag.tag-location-2 > span {
-
-}
-
-.news-detail ins-tag.tag-marketing > span,
-.news-listing ins-tag.tag-marketing > span {
-  color: #FFA639;
-  background-color: rgba(255, 166, 57, .10)
-}
-
-.news-detail ins-tag.tag-sales > span,
-.news-listing ins-tag.tag-sales > span {
-
-}
 
 .news-detail ins-tag.tag-support > span,
 .news-listing ins-tag.tag-support > span {
@@ -3588,11 +3568,6 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
 .news-listing ins-tag.tag-design > span {
   color: #2BBAD9;
   background-color: rgba(43, 186, 217, .10)
-}
-
-.news-detail ins-tag.tag-delivery > span
-.news-listing ins-tag.tag-delivery > span {
-
 }
 
 .news-detail ins-tag.tag-developers > span,

@@ -10,11 +10,8 @@ query search_all_documentation(
     filter: {
       table: {value_in: [
         "modules/ins_template_intranet/support", 
-        "modules/ins_template_intranet/delivery",
         "modules/ins_template_intranet/design",
         "modules/ins_template_intranet/developers",
-        "modules/ins_template_intranet/marketing",
-        "modules/ins_template_intranet/sales",
         "modules/ins_template_intranet/support"
       ]}, 
       properties: {

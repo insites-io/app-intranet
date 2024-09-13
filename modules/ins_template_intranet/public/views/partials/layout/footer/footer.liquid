@@ -8,11 +8,6 @@ database_name: 'modules/ins_template_intranet/design',
 properties: filter
 -%}
 
-{%- graphql footer_marketing = 'modules/ins_template_intranet/system/get_footer_links'
-database_name: 'modules/ins_template_intranet/marketing',
-properties: filter
--%}
-
 {%- graphql footer_support = 'modules/ins_template_intranet/system/get_footer_links'
 database_name: 'modules/ins_template_intranet/support',
 properties: filter
@@ -23,36 +18,9 @@ database_name: 'modules/ins_template_intranet/developers',
 properties: filter
 -%}
 
-{%- graphql footer_delivery= 'modules/ins_template_intranet/system/get_footer_links'
-database_name: 'modules/ins_template_intranet/delivery',
-properties: filter
--%}
-
-{%- graphql footer_sales= 'modules/ins_template_intranet/system/get_footer_links'
-database_name: 'modules/ins_template_intranet/sales',
-properties: filter
--%}
-
-{%- graphql footer_location_1 = 'modules/ins_template_intranet/system/get_footer_links'
-database_name: 'modules/ins_template_intranet/location_1',
-properties: filter
--%}
-
-{%- graphql footer_location_2 = 'modules/ins_template_intranet/system/get_footer_links'
-database_name: 'modules/ins_template_intranet/location_2',
-properties: filter
--%}
-
 {%- assign footer_design_items = footer_design.items.results -%}
-{%- assign footer_marketing_items = footer_marketing.items.results -%}
 {%- assign footer_support_items = footer_support.items.results -%}
 {%- assign footer_developers_items = footer_developers.items.results -%}
-{%- assign footer_delivery_items = footer_delivery.items.results -%}
-{%- assign footer_sales_items = footer_sales.items.results -%}
-
-{%- assign footer_location_1_items = footer_location_1.items.results -%}
-
-{%- assign footer_location_2_items = footer_location_2.items.results -%}
 
 <footer class="blocks-footer-04 footer bg-color-ui-01">
   <hr>

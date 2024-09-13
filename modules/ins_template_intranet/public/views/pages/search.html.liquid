@@ -38,14 +38,9 @@ dynamic_cache:
     [
       "modules/insites_cms/insites_global_content",
       "modules/insites_core/crm_system_field",
-      "modules/ins_template_intranet/delivery",
       "modules/ins_template_intranet/design",
       "modules/ins_template_intranet/developers",
-      "modules/ins_template_intranet/marketing",
-      "modules/ins_template_intranet/sales",
-      "modules/ins_template_intranet/support",
-      "modules/ins_template_intranet/location_1",
-      "modules/ins_template_intranet/location_2"
+      "modules/ins_template_intranet/support"
     ]
     {%- endparse_json -%}
     {%- include "modules/ins_template_intranet/system/generate_cache_key", models: models -%}
