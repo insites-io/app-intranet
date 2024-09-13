@@ -2108,6 +2108,7 @@ footer.blocks-footer-02 .bottom-footer a {
 
 .navigation-04.header {
   border-bottom: 1px solid var(--color-ui-03, #F2F4F8);;
+  max-height: 107px;
 }
 
 .navigation-04 .header-top-bar ins-button.hide-for-small-only {
@@ -2116,6 +2117,8 @@ footer.blocks-footer-02 .bottom-footer a {
 
 .navigation-04.drawer-holder {
   z-index: 99999;
+  right: 0;
+  bottom: 0;
 }
 
 .navigation-04 ins-drawer#mobile-menu .ins-drawer-wrap .ins-content {
@@ -3541,7 +3544,6 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
 }
 
 .scroll-to-top-btn {
-  bottom: 77vh;
   right: 40px;
 }
 
@@ -3603,11 +3605,6 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
 }
 /* end news tags */
 
-
-
-
-
-
 /** MARKDOWN STYLING **/
 .markdown-block h1,
 .markdown-block h2,
@@ -3630,37 +3627,37 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
 .dynamic-content.markdown-block h1,
 .markdown-block h1 {
   font-size: var(--typography-xxx-large, 2.5rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+  margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block h2,
 .markdown-block h2 {
   font-size: var(--typography-xx-large, 2rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block h3,
 .markdown-block h3 {
   font-size: var(--typography-x-large, 1.5rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block h4,
 .markdown-block h4 {
   font-size: var( --typography-large, 1.125rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block h5,
 .markdown-block h5 {
   font-size: var(--typography-medium, 1rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block h6,
 .markdown-block h6 {
   font-size: var(--typography-small, 0.875rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block p:not([class]),
@@ -3670,7 +3667,7 @@ ins-drawer.blocks-header-drawer-05b .ins-drawer-header.sticky{
   font-weight: 400;
   font-size: var(--typography-small, 0.875rem);
   line-height: var(--typography-x-large, 1.5rem);
-  margin-bottom: var(--typography-xxxx-large, 3rem);
+    margin-bottom: var(--typography-xx-large, 2rem);
 }
 
 .dynamic-content.markdown-block a:not([class]),

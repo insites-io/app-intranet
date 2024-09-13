@@ -21,8 +21,8 @@ database_name: database_name
 
 
 <div class="layout-app-sidebar">
-  <h4 class="hide-for-small-only">Categories</h4>
-  <div class="spacer large hide-for-small-only"></div>
+  <h4>Categories</h4>
+  <div class="spacer large"></div>
   {%- assign params = '[]' | parse_json -%}
   {%- for item in context.params -%}
   {%- assign params = params | add_to_array: item[0] -%}

@@ -18,10 +18,7 @@ It IS NOT accessable in {{content_for_layout}} which includes the specific page
   {% include 'modules/ins_template_intranet/layout/head' %}
 </head>
 <body>
-
   {% include 'modules/ins_template_intranet/layout/header' %}
-  {% include 'modules/ins_template_intranet/layout/mobile_menu' %}
-
   <div>
     {{ content_for_layout }}
   </div>

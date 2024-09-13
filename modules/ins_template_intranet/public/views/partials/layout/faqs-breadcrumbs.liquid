@@ -15,10 +15,6 @@
     {%- graphql res = "modules/ins_template_intranet/content/get_crumb", 
         slug: current_slug -%}
 
-        
-
-
-
     {%- assign current_crumb = res.items.results.first -%}
     {%- assign current_crumb_title = current_crumb.title -%}
     {%- if current_crumb_title == blank -%}
@@ -56,5 +52,11 @@
     <span class="current">{{ current_crumb_title }}</span>
 
 {%- else -%}
-    <span class="current">{{ title }}</span>
+<span class="current">
+    {% if title == "Faqs" %}
+      FAQs
+    {% else %}
+      {{ title }}
+    {% endif %}
+  </span>
 {%- endif -%}
