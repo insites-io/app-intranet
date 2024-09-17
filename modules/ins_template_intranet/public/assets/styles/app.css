@@ -489,6 +489,13 @@
   ins-button+ins-button button {
     margin-left: 12px;
   }
+
+  @media screen and (max-width: 768px) {
+    ins-button+ins-button button {
+        margin-left: 0 !important;
+    }
+  }
+  
   @media screen and (max-width: 639px) {
     .btn-container ins-button button {
         width: 100%;
