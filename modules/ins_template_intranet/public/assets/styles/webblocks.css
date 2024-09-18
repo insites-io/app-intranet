@@ -412,7 +412,17 @@ ins-drawer.blocks-header-drawer-05 .ins-drawer-header.sticky{
 }
 
 .blocks-sc-2col-07 .faqs-holder .ins-accordion-item_header > .inner-head .heading {
-  margin-right: 20px;
+  margin-right: 25px;
+  line-height: 1.5;
+}
+
+.blocks-sc-2col-06 .faqs-holder .ins-accordion-item_header > .inner-head {
+  display: flex;
+}
+
+.blocks-sc-2col-06 .faqs-holder .ins-accordion-item_header > .inner-head .heading {
+  margin-right: 25px;
+  line-height: 1.5;
 }
 
 
