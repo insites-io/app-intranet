@@ -1,0 +1,38 @@
+---
+  metadata: {
+    partial_name: "sidebar"
+  }
+---
+{%- assign schema_name = sidebar_fragment_title | downcase | replace: " ", "_" -%}
+{%- assign schema_name = schema_name | replace: "-", "_" -%}
+
+{%- comment -%}
+{%- if schema_name == 'design' -%}
+    {%- assign database_schema = "modules/intranet/" | append: schema_name -%}
+{%- else -%}
+    {%- assign database_schema = "modules/ins_template_help_centre/" | append: schema_name -%}
+{%- endif -%}
+{%- endcomment -%}
+
+
+{%- assign database_schema = "modules/intranet/" | append: schema_name -%}
+
+{%- assign date_now = "now" | date: "%Y-%m-%d" -%}
+{%- assign main_link = "/" | append: parent_slug | append: "/"  -%}
+
+{%- function root = "modules/intranet/content/sidebar/tree",
+    query_path: "modules/intranet/sidebar/get_parent_menu",
+    database_schema: database_schema,
+    date_now: date_now,
+    main_link: main_link,
+    current_slug: current_slug -%}
+
+<div class="layout-app-sidebar">
+    <h4>Categories</h4>
+    <div class="spacer medium hide-for-small-only"></div>
+    <div class="spacer large show-for-small-only"></div>
+    
+    {%- include "modules/intranet/content/sidebar/renderer", menus: root.menus -%}
+
+    
+</div>

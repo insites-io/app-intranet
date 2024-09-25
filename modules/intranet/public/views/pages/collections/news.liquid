@@ -1,0 +1,40 @@
+---
+slug: news
+layout: modules/intranet/news_layout
+searchable: true
+max_deep_level: 2,
+metadata: {
+  "page_name": "News",
+  "database_id": "1764008",
+  "source_name": "modules/intranet/news",
+  "is_list_layout_enabled": true,
+  "is_details_layout_enabled": true,  
+  "page_title": "News",
+  "is_auth_policy_enabled": true
+}
+dynamic_cache:
+  layout: true
+  key: |-
+    {%- parse_json models -%}
+      [
+        "modules/insites_cms/global",
+        "modules/intranet/news"
+      ]
+    {%- endparse_json -%}
+    {%- include "modules/intranet/system/generate_cache_key", models: models -%}
+authorization_policies:
+  - modules/intranet/only_allowed_if_logged_in
+  - modules/intranet/only_allowed_if_ins_administrator
+---
+
+{%- if context.params.slug2 != blank -%}
+
+  {%- graphql news = 'modules/intranet/news/get_news', 
+    slug: context.params.slug2 | dig: 'items','results' | first 
+  -%}
+
+  {% include 'modules/intranet/content/news/news-detail-main', item: news %}    
+
+{%- else -%}
+  {% include 'modules/intranet/content/news/news-list-main' %}   
+{%- endif -%}

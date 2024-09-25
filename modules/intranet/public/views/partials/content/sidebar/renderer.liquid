@@ -1,0 +1,28 @@
+---
+  metadata: {
+    partial_name: "renderer"
+  }
+---
+{%- for menu in menus -%}
+    {%- if menu.children != blank -%}
+        <ins-accordion menu>
+            <ins-accordion-item 
+                link-target="_self" 
+                heading="{{ menu.label }}" 
+                link="{{ menu.link }}" 
+                open-icon="icon-plus" 
+                close-icon="icon-minus">
+                {%- include "modules/intranet/content/sidebar/renderer", 
+                    menus: menu.children -%}
+            </ins-accordion-item>
+        </ins-accordion>
+    {%- else -%}
+
+        <ins-accordion-link 
+            link-target="_self" 
+            label="{{ menu.label }}" 
+            link="{{ menu.link }}" >
+        </ins-accordion-link>
+
+    {%- endif -%}
+{%- endfor -%}

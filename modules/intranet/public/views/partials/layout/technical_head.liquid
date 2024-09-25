@@ -1,0 +1,16 @@
+---
+  metadata: {
+    partial_name: "technical-head"
+  }
+---
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover">
+<meta content="authenticity_token" name="csrf-param">
+<meta content="{{ context.authenticity_token }}" name="csrf-token">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+{% include 'modules/intranet/technical-head/favicons' %}
+{% include 'modules/intranet/technical-head/fonts' %}
+{% include 'modules/intranet/technical-head/vendor_assets' %}
+{% include 'modules/intranet/technical-head/insites_assets' %}
+{% include 'modules/intranet/technical-head/project_assets' %}

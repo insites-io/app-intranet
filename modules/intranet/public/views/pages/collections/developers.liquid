@@ -1,0 +1,36 @@
+---
+slug: developers
+layout: modules/intranet/documentation_layout
+searchable: true
+max_deep_level: 2,
+metadata: {
+  "page_name": "Developers",
+  "database_id": "1764002",
+  "source_name": "modules/intranet/developers",
+  "is_list_layout_enabled": true,
+  "is_details_layout_enabled": true,  
+  "page_title": "Delivery",
+  "is_auth_policy_enabled": true
+}
+dynamic_cache:
+  layout: true
+  key: |-
+    {%- parse_json models -%}
+        [
+        "modules/insites_cms/global",
+        "modules/intranet/developers"
+        ]
+    {%- endparse_json -%}
+    {%- include "modules/intranet/system/generate_cache_key", models: models -%}
+authorization_policies:
+  - modules/intranet/only_allowed_if_logged_in
+  - modules/intranet/only_allowed_if_ins_administrator
+---
+
+{%- if context.params.slug2 != blank -%}
+    {% include 'modules/intranet/content/documentation/documentation-detail-collection', 
+        table_name: 'modules/intranet/developers' 
+    %}   
+{%- else -%}
+    {% include 'modules/intranet/content/documentation/documentation-list-main' %}  
+{%- endif -%}

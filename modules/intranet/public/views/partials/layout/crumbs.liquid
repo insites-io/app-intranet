@@ -1,0 +1,18 @@
+---
+  metadata: {
+    partial_name: "crumbs"
+  }
+---
+{%- graphql res = "modules/intranet/content/get_crumb", 
+    parent_category: parent_category -%}
+
+{%- assign crumb = res.items.results.first -%}
+{%- if crumb -%}
+    {%- assign crumbs = crumbs | add_to_array: crumb -%}
+    {%- if crumb.parent_category -%}
+        {%- function crumbs = "modules/intranet/layout/crumbs",  
+            crumbs: crumbs, parent_category: crumb.parent_category -%}
+    {%- endif -%}
+{%- endif -%}
+
+{%- return crumbs -%}

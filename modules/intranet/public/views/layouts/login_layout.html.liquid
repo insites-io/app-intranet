@@ -1,0 +1,24 @@
+---
+  metadata: {
+    layout_name: "login_layout"
+  }
+---
+
+{%- include "modules/intranet/data/global_content" -%}
+{%- assign global = context.exports.global -%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'modules/intranet/layout/technical_head' %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    </head>
+    <body class="system-page bg-grey flex-container flex-dir-column">
+
+        <div class="system-content" style="width: 100%;">
+            {{ content_for_layout }}
+        </div>
+
+    </body>
+</html>

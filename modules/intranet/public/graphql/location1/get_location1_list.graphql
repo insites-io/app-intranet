@@ -1,0 +1,46 @@
+query get_location1_list(
+  $page: Int = 1, 
+  $size: Int = 10, 
+  $status: String ) {
+  items: records(
+    page: $page,
+    per_page: $size,
+    filter: {
+      deleted_at: {
+        exists: false
+      },
+      table: {
+        value: "modules/intranet/location_1"
+      },
+      properties: 
+        [
+          {
+            name: "status",
+            value: $status
+          }
+        ]
+    },
+    sort: [
+      { 
+        properties: {
+          name: "sort_order",
+          order: ASC
+        }
+      }
+    ]
+  ) {
+    total_entries
+    total_pages
+    current_page
+    has_next_page
+    has_previous_page
+    per_page
+    results {
+      id
+      slug: property(name: "slug")
+      section: property(name: "section")
+      title: property(name: "title")
+      published_date: property(name: "published_date")
+    }
+  }
+}

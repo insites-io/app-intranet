@@ -1,0 +1,12 @@
+---
+  metadata: {
+    partial_name: "documentation-detail-collection"
+  }
+---
+{%- graphql documentation = 'modules/intranet/documentation/get_documentation_list',
+    database_schema: table_name
+    status: "Published"
+    slug: context.params.slug2 | dig: 'items','results' | first
+    -%}
+
+{% include 'modules/intranet/content/documentation/documentation-detail-main', item: documentation %}

@@ -1,0 +1,46 @@
+---
+  metadata: {
+    partial_name: "faqs-holder"
+  }
+---
+{%- graphql homepage_faqs = 'modules/intranet/faqs/get_faqs'
+page: 1,
+size: 5
+featured: true,
+status: "Published"
+-%}
+
+{%- if homepage_faqs.items.results.size > 0 -%}
+{%- assign homepage_faqs = homepage_faqs.items.results -%}
+<h2>FAQ</h2>
+<div class="spacer small"></div>
+<a href="faqs" class="button-default color-main">View All</a>
+<div class="spacer x-large"></div>
+<div class="faqs-holder">
+  <ins-accordion>
+    {%- for item in homepage_faqs -%}
+    <ins-accordion-item heading="{{ item.question }}" open-icon="icon-plus" close-icon="icon-minus">
+      <ins-markdown
+        value="{{ item.answer }}">
+      </ins-markdown>
+      {%- if item.attachment_download.url -%}
+      <div class="spacer small"></div>
+      <hr />
+      <div class="spacer small"></div>
+      <div class="grid-x grid-padding-x container">
+        <div class="small-6 medium-6 large-9 cell">
+          {{ item.attachment_label }}
+        </div>
+        <div class="small-6 medium-6 large-3 cell text-right">
+          <a href="{{ item.attachment_download.url}}" target="_blank" class="faqs-download">
+            <ins-button icon="icon-file-download" label="DOWNLOAD" solid size="small">
+            </ins-button>
+          </a>
+        </div>
+      </div>
+      {%- endif -%}
+    </ins-accordion-item>
+    {%- endfor -%}
+  </ins-accordion>
+</div>
+{%- endif -%}

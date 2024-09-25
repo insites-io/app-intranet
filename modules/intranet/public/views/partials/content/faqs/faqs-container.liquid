@@ -1,0 +1,109 @@
+---
+  metadata: {
+    partial_name: "faqs-container"
+  }
+---
+<div class="blocks-sc-2col-07 wrapper bg-color-ui-01 app-sidebar">
+  <div class="spacer section"></div>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x gutter-medium">
+      <div class="large-3 medium-3 small-12 cell">
+        {%- include 'modules/intranet/content/sidebar/faqs-sidebar',
+        database_name: "modules/intranet/faqs",
+        all_link: context.page.slug,
+        title: "FAQs"
+        -%}
+      </div>
+      <div class="spacer xxx-large small-12 cell show-for-small-only"></div>
+      <div class="large-9 medium-9 small-12 cell">
+        <h1>FAQs</h1>
+        <div class="spacer large"></div>
+
+        {%- if context.params.category != blank -%}
+        <h3 class="hide-for-small-only">{{ context.params.category }}</h3>
+        <div class="spacer x-large"></div>
+        {%- endif -%}
+
+        {%- assign page = context.params.page | default: 1 | plus: 0 -%}
+        {%- assign per_page = context.params.per_page | default: 9 | plus: 0 -%}
+
+        {%- graphql faqs = 'modules/intranet/faqs/get_faqs'
+        page: page,
+        size: per_page,
+        category: context.params.category
+        status: "Published"
+        -%}
+
+        <div class="faqs-holder">
+
+          {%- if faqs.items.results.size == 0 -%}
+          {%- if category != blank -%}
+          <p>No results found for {{ category }}.</p>
+          {%- else -%}
+          {%- comment -%} No results {%- endcomment -%}
+          <p>No results found within FAQs.</p>
+          {%- comment -%} End no results {%- endcomment -%}
+          {%- endif -%}
+          {%- else -%}
+          {%- comment -%} Has results {%- endcomment -%}
+          <ins-accordion>
+            {%- for faq in faqs.items.results -%}
+            <ins-accordion-item heading="{{ faq.question }}" open-icon="icon-plus" close-icon="icon-minus">
+              <ins-markdown
+                value="{{ faq.answer }}">
+              </ins-markdown>
+              {%- if faq.attachment_download.url -%}
+              <div class="spacer small"></div>
+              <hr />
+              <div class="spacer small"></div>
+              <div class="grid-x grid-padding-x container">
+                <div class="small-7 medium-6 large-9 cell">
+                  {{ faq.attachment_label }}
+                </div>
+                <div class="small-5 medium-6 large-3 cell text-right">
+                  <a href="{{ faq.attachment_download.url}}" target="_blank" class="faqs-download">
+                    <ins-button icon="icon-file-download" label="DOWNLOAD" solid size="small">
+                    </ins-button>
+                  </a>
+                </div>
+              </div>
+              {%- endif -%}
+            </ins-accordion-item>
+            {%- endfor -%}
+          </ins-accordion>
+          <div class="spacer xx-large"></div>
+          {%- comment -%} End has results {%- endcomment -%}
+          {%- endif -%}
+          <div class="pagination-holder">
+            {%- include 'modules/intranet/content/faqs/pagination',
+            data: faqs -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer section"></div>
+</div>
+<script>
+  let category = '{{ context.params.category }}';
+  let per_page = {{ per_page }};
+
+  let goToFilteredUrl = function (per_page, category) {
+    let url = "/faqs"
+      + `?page=1&per_page=${per_page}`
+      + `&category=${category}`;
+
+    window.location.assign(url);
+  }
+
+  let pageSizeSelect = document.getElementById("faqs-page-size-select");
+  if (pageSizeSelect) {
+    pageSizeSelect.addEventListener('insValueChange', pageSizeValueSelected);
+  }
+
+  function pageSizeValueSelected(event) {
+    let per_page = event.detail;
+    goToFilteredUrl(per_page, category);
+  }
+
+</script>

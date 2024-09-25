@@ -1,0 +1,38 @@
+---
+  metadata: {
+    partial_name: "timeline-status-filter"
+  }
+---
+{%- graphql res = "modules/intranet/timeline/get_schema_metadata" -%}
+
+{%- assign props = res.items.results.first.properties -%}
+
+{% for prop in props %}
+
+      {%- if prop.name == "status" -%}
+
+        {%- assign options = "All" | split: ',' -%}
+        {%- assign options = options | add_to_array: prop.metadata.options | flatten -%}
+        {%- assign status = context.params.status | default: "" -%}
+        
+        {%- export status, namespace: 'filters' -%}
+
+        {% assign new_options = "" %}
+
+        {%- for option in options -%}
+            {%- if option != "Draft" -%}
+                {% assign new_options = new_options | append: option | append: "," %}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign new_option_list = new_options | split: "," -%}
+
+        <ins-filter-item
+            name="Status" selected="{{ status }}"
+            options='{{ new_option_list }}'>
+        </ins-filter-item>
+        {%- break -%}
+        
+    {%- endif -%}
+    
+{% endfor %}

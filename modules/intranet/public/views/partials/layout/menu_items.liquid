@@ -1,0 +1,46 @@
+---
+  metadata: {
+    partial_name: "menu-items"
+  }
+---
+{%- graphql location_1 = 'modules/intranet/system/get_database_content_for_menu'
+database_name: 'modules/intranet/location_1'
+-%}
+{%- graphql location_2 = 'modules/intranet/system/get_database_content_for_menu'
+database_name: 'modules/intranet/location_2'
+-%}
+
+{%- assign location_1_items = location_1.items.results -%}
+{%- assign location_2_items = location_2.items.results -%}
+
+
+<ul class="main-menu show-for-large">
+  <li>
+    <ins-dropdown label="Teams" link-title="teams">
+      <ins-dropdown-item label="Support"
+        link="/support">
+      </ins-dropdown-item>
+      <ins-dropdown-item label="Developers"
+        link="/developers">
+      </ins-dropdown-item>
+      <ins-dropdown-item label="Design"
+        link="/design">        
+      </ins-dropdown-item>
+    </ins-dropdown>
+  </li>
+  <li {% if context.params.slug=='news' %}class="active" {%- endif -%}>
+    <a href="/news">
+      News
+    </a>
+  </li>
+  <li {% if context.params.slug=='faqs' %}class="active" {%- endif -%}>
+    <a href="/faqs">
+      FAQs
+    </a>
+  </li>
+  <li {% if context.params.slug=='timeline' %}class="active" {%- endif -%}>
+    <a href="/timeline">
+      Timeline
+    </a>
+  </li>
+</ul>

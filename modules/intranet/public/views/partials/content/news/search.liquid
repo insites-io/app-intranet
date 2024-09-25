@@ -1,0 +1,48 @@
+---
+  metadata: {
+    partial_name: "news-search"
+  }
+---
+<div class="blocks-hero-04 wrapper"
+  style="background-image: url('{{ 'modules/intranet/images/Hero@1.5x.webp' | asset_url }}');">
+  <div class="grid-container">
+    <div class="spacer xxxx-large"></div>
+    <div class="grid-x align-center">
+      <div class="large-6 medium-10 small-12 cell">
+        <div class="title">
+          {{ top_heading }}
+        </div>
+        <div class="spacer large"></div>
+        <ins-input id="news-search" placeholder="Search company news" value="" icon="icon-search">
+        </ins-input>
+      </div>
+    </div>
+    <div class="spacer xxxx-large"></div>
+  </div>
+</div>
+
+<script>
+  let newsSearch = document.getElementById('news-search');
+  if (newsSearch) {
+    newsSearch.addEventListener('insInput', searchHandler);
+    newsSearch.addEventListener('insIconClick', event => searchHandler(event, true))
+  }
+
+  function searchHandler(event, click = false) {
+    if ((event.detail.keyCode === 13 && event.detail.value !== "") ||
+      (click && event.detail.value !== "")) {
+      window.location = `/news?keyword=${encodeURIComponent(event.detail.value)}`;
+    } else if (event.detail.value == "") {
+      window.location = `/news`;
+    }
+  }
+
+</script>
+
+<style>
+  .image img {
+      width: 100%; 
+      height: auto; 
+      display: block; 
+  }
+</style>

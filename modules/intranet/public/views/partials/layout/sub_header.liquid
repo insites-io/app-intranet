@@ -1,0 +1,44 @@
+---
+  metadata: {
+    partial_name: "sub-header"
+  }
+---
+<div class="sub-header wrapper">
+  <div class="grid-container">
+    <div class="spacer small"></div>
+    <div class="grid-x grid-padding-x breadcrumb-holder">
+      <div class="layout-breadcrumbs large-9 medium-7 small-12 large-order-1 medium-order-1 small-order-2 cell">
+        <div class="hide-for-small-only">
+          <a class="color-font-head" href="/">Intranet Template</a>
+          <span class="icon-chevron-right"></span>
+          {%- include 'modules/intranet/layout/docu_breadcrumbs' -%}
+        </div>
+      </div>
+      <div class="large-3 medium-5 small-12 large-order-2 medium-order-2 small-order-1 cell">
+        <ins-input id="docu-search-input" placeholder="What are you looking for?" field="text" icon="icon-search"
+          icon-event="true" error-message="Search Keyword cannot be blank">
+        </ins-input>
+      </div>
+    </div>
+    <div class="spacer small"></div>
+  </div>
+</div>
+
+<script>
+let slug = "{{ context.params.slug }}" 
+let docuSearchInput = document.getElementById("docu-search-input");
+
+if (docuSearchInput) {
+  docuSearchInput.addEventListener('insInput', searchHandler);
+  docuSearchInput.addEventListener('insIconClick', event => searchHandler(event, true))
+}
+
+function searchHandler(event, click = false) {
+  if ((event.detail.keyCode === 13 && event.detail.value !== "") ||
+    (click && event.detail.value !== "")) {
+    window.location = `/search?keyword=${encodeURIComponent(event.detail.value)}&docu_category=${slug}`;
+  } else if (event.detail.value == "") {
+    window.location = `/`;
+  }
+}
+</script>

@@ -1,0 +1,89 @@
+---
+  metadata: {
+    partial_name: "breadcrumb"
+  }
+---
+{%- assign title = context.page.metadata.title -%}
+{%- assign main_link = "/" | append: context.page.slug | append: '/'  -%}
+{%- assign current_slug = context.params.slug2 -%}
+{%- assign crumbs = "" | split: "," -%}
+
+{%- if title == blank -%}
+    {%- assign title = context.page.metadata.page_title -%}
+{%- endif -%}
+
+
+current slug: {{ current_slug }}
+{%- if current_slug -%}
+    {%- graphql res = "modules/intranet/content/get_crumb", 
+        slug: current_slug -%}
+
+
+
+    {%- assign current_crumb = res.items.results.first -%}
+    {%- assign current_crumb_title = current_crumb.title -%}
+    {%- if current_crumb_title == blank -%}
+        {%- assign current_crumb_title = current_crumb.post_title -%}
+    {%- endif -%}
+
+    {%- if current_crumb.parent_category -%}
+        {%- function crumbs = "modules/intranet/layout/crumbs",  
+            crumbs: crumbs, parent_category: current_crumb.parent_category -%}
+    {%- endif -%}
+
+    {%- assign crumbs = crumbs | reverse -%}
+
+    <a class="color-font-head" href="{{ main_link }}">{{ title }}</a>
+    <span class="icon-chevron-right"></span>
+
+    {%- for crumb in crumbs -%}
+
+        {%- assign crumb_title = crumb.title -%}
+        {%- if crumb_title == blank -%}
+            {%- assign crumb_title = crumb.post_title -%}
+        {%- endif -%}
+
+        {%- if crumb.slug != blank -%}
+            {%- assign link = main_link | append: crumb.slug -%}
+            <a class="color-font-head" href="{{ link }}">{{ crumb_title }}</a>
+            
+        {%- else -%}
+            <span>{{ crumb_title }}</span>
+            
+        {%- endif -%}
+        <span class="icon-chevron-right"></span>
+    {%- endfor -%}
+
+    <span class="current">{{ current_crumb_title }}</span>
+
+{%- else -%}
+    <span class="current">{{ title }}</span>
+{%- endif -%}
+
+breadcrumb
+
+<div class="blocks-sc-2col-07 wrapper bg-color-ui-01 breadcrumb-holder">
+  <div class="spacer"></div>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="large-8 medium-7 small-12 cell">
+        <div class="breadcrumbs">
+          <a href="/">Intranet</a>
+          <span class="separator">
+            <i class="icon-angle-right"></i>
+          </span>
+          <span class="current">
+            FAQs
+          </span>
+        </div>
+      </div>
+      <div class="large-4 medium-5 small-12 cell">
+        <div class="search">
+          <ins-input id="" placeholder="What are you looking for?" value="" icon="icon-search">
+          </ins-input>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="spacer"></div>
+</div>
