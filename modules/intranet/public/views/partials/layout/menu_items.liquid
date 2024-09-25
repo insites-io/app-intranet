@@ -3,17 +3,6 @@
     partial_name: "menu-items"
   }
 ---
-{%- graphql location_1 = 'modules/intranet/system/get_database_content_for_menu'
-database_name: 'modules/intranet/location_1'
--%}
-{%- graphql location_2 = 'modules/intranet/system/get_database_content_for_menu'
-database_name: 'modules/intranet/location_2'
--%}
-
-{%- assign location_1_items = location_1.items.results -%}
-{%- assign location_2_items = location_2.items.results -%}
-
-
 <ul class="main-menu show-for-large">
   <li>
     <ins-dropdown label="Teams" link-title="teams">
