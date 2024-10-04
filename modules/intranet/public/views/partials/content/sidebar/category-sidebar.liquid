@@ -3,12 +3,12 @@
     partial_name: "category-sidebar"
   }
 ---
-{%- graphql database = 'modules/intranet/system/get_database'
-database_name: database_name
+{%- graphql database = 'modules/intranet/system/get_database' 
+  database_name: database_name | dig: 'items','results' | first 
 -%}
 
+{%- assign properties = database.properties  -%}
 
-{%- assign properties = database.items.results[0].properties -%}
 {%- assign categories = '[]' | parse_json -%}
 {%- for property in properties -%}
 

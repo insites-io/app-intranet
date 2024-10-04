@@ -6,15 +6,6 @@
 {%- assign schema_name = sidebar_fragment_title | downcase | replace: " ", "_" -%}
 {%- assign schema_name = schema_name | replace: "-", "_" -%}
 
-{%- comment -%}
-{%- if schema_name == 'design' -%}
-    {%- assign database_schema = "modules/intranet/" | append: schema_name -%}
-{%- else -%}
-    {%- assign database_schema = "modules/ins_template_help_centre/" | append: schema_name -%}
-{%- endif -%}
-{%- endcomment -%}
-
-
 {%- assign database_schema = "modules/intranet/" | append: schema_name -%}
 
 {%- assign date_now = "now" | date: "%Y-%m-%d" -%}

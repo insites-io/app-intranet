@@ -15,8 +15,17 @@
     <body class="system-page flex-container flex-dir-column">
         
     {%- graphql data = 'modules/intranet/session/get_current_user' -%}
-    {%- if data.current_user.administrator_details[0].is_enabled == true or data.current_user.administrator_details[0].is_enabled == "true" -%}
-        {%- assign valid_session = true -%}
+
+    {% assign admin = data.current_user.administrator_details %}
+
+    {% if admin and admin.size > 0 %}
+        {% assign admin_enabled = admin | first | dig: 'is_enabled' %}
+ 
+        {% if admin_enabled %}
+            {% if admin_enabled == 'true' or admin_enabled == true %}
+                {%- assign valid_session = true -%}
+            {% endif %}
+        {% endif %}
     {%- endif -%}
     {%- if valid_session -%}
         {%- include 'modules/intranet/layout/header' -%}

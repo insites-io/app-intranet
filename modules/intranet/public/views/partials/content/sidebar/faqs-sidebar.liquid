@@ -4,13 +4,10 @@
   }
 ---
 {%- graphql database = 'modules/intranet/system/get_database'
-database_name: database_name
+  database_name: database_name | dig: 'items','results' | first 
 -%}
-{%- comment -%}
-{%- assign title = context.page.metadata.title -%}
-{%- endcomment -%}
 
-{%- assign properties = database.items.results[0].properties -%}
+{%- assign properties = database.properties -%}
 {%- assign categories = '[]' | parse_json -%}
 {%- for property in properties -%}
 

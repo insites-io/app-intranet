@@ -52,14 +52,6 @@
     {{ tmp_start }}-{{ end_count }} of {{ data.items.total_entries }}
   </span>
 
-  {% comment %}
-  {%- assign to = data.items.per_page | times: data.items.current_page -%}
-  {%- assign from = to | minus: data.items.per_page | plus: 1 -%}
-  <span class="from-total-pages">
-    {{ from }}-{{ to }} of {{ data.items.total_entries }}
-  </span>
-  {% endcomment %}
-
   {%- if data.items.has_previous_page == true -%}
 
   <a class="color-font-head" href="{{ slug }}/timeline?page={{ data.items.current_page | minus: 1 }}{{ params }}">

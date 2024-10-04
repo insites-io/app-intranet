@@ -8,8 +8,7 @@ Gets 'Insites Site Manger - Global Content' data and exports it to be usable as 
 {%- endcomment -%}
 
 {%- if context.modules.insites_cms -%}
-    {%- graphql global = 'modules/intranet/system/get_global_content' -%}
-    {%- assign global = global.items.results[0] -%}
+    {%- graphql global = 'modules/intranet/system/get_global_content' | dig: 'items','results' | first  -%}
 
     {% comment %} Location 1 - concat address {% endcomment %}
     {%- assign loc_1_address_full = "" -%}

@@ -77,10 +77,8 @@ let WebBlocks = (function () {
         //clientHeight includes the padding only
         if (windowWidth <= mobileWindowWidthLimit) {
           fillerHeight = fillerContainer.getElementsByClassName("mobile")[0].clientHeight;
-          //console.log("Inner Height Used: ", fillerContainer.getElementsByClassName("mobile")[0].clientHeight);
         } else {
           fillerHeight = fillerContainer.getElementsByClassName("desktop")[0].clientHeight;
-          //console.log("Inner Height Used: ", fillerContainer.getElementsByClassName("desktop")[0].clientHeight);
         }
         return fillerHeight;
       }
@@ -262,9 +260,6 @@ let WebBlocks = (function () {
         let position_y = window.scrollY;
         let mainHeader = document.getElementById('main-header');
         
-        console.log('position_y: ', position_y);
-        console.log('filler: ', WebBlocks.data.getFillerHeight());
-
         if(position_y > WebBlocks.data.getFillerHeight()) {
           mainHeader.style.transform = "translate3d(0px, -133px, 0px)";
         }
@@ -332,7 +327,6 @@ let WebBlocks = (function () {
             //this is done to avoid throtling the function too much
             if (!ticking) {
               window.requestAnimationFrame(function () {
-                //console.log("Scroll Y:", window.scrollY);
                 WebBlocks.events.checkScrollStatus(window.scrollY);
                 ticking = false;
               });
@@ -371,6 +365,5 @@ window.onload = function(e){
     WebBlocks.init.initScrollMenu();
     WebBlocks.init.initSearch();
   }, 200);
-  console.log('loaded.');
 }
 

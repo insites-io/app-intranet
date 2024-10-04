@@ -9,7 +9,13 @@ metadata: {
 ---
 
 {% graphql data = 'modules/intranet/session/get_current_user' %}
-{% if data.current_user.administrator_details[0].status == "active" %}
-  true
+
+{% assign admin = data.current_user.administrator_details %}
+
+{% if admin and admin.size > 0 %}
+  {% assign admin_status = admin | first | dig: 'status' %}
+  {% if admin_status and admin_status == 'active' %}
+    true
+  {% endif %}
 {% endif %}
 
