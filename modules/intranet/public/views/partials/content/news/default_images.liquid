@@ -1,0 +1,22 @@
+{% parse_json 'news_details' %}
+[
+    {
+        "image": "{{ 'modules/intranet/images/default-images/news/how-to-reach-customers-everywhere-with-mobile-seo.webp' | asset_url }}",
+        "slug": "how-to-reach-customers-everywhere-with-mobile-seo"
+    },
+    {
+        "image": "{{ 'modules/intranet/images/default-images/news/intranet-hacks-tips-and-tricks-to-maximize-your-productivity.webp' | asset_url }}",
+        "slug": "intranet-hacks-tips-and-tricks-to-maximize-your-productivity"
+    },
+    {
+        "image": "{{ 'modules/intranet/images/default-images/news/nested-submenus-a-guide-to-creating-effective-navigation.webp' | asset_url }}",
+        "slug": "nested-submenus-a-guide-to-creating-effective-navigation"
+    },
+    {
+        "image": "{{ 'modules/intranet/images/default-images/news/the-beginners-guide-to-website-development.webp' | asset_url }}",
+        "slug": "the-beginners-guide-to-website-development"
+    }
+]
+{% endparse_json %}
+
+{%- export news_details -%}

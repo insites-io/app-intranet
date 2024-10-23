@@ -8,8 +8,13 @@
     <div class="header-top-bar grid-container grid-x align-middle">
       <div class="large-2 medium-3 small-9 cell">
         <a href="/">
-          <img class="logo" src="{{ global.company_logo.url }}"
+          {% if global.company_logo.url != blank %}
+            <img class="logo" src="{{ global.company_logo.url }}"
             alt="logo" />
+          {% else %}
+              <img class="logo" src="{{ 'modules/intranet/images/logo/intranet-logo.png' | asset_url }}" 
+              alt="Homepage" width="180" height="90">
+          {% endif %}     
         </a>
       </div>
       <div class="large-1 medium-3 small-0"></div>
