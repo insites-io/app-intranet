@@ -47,7 +47,7 @@ keyword: page_keyword
     <!-- article -->
     <article class="grid-x grid-padding-x gutter-medium blog-list align-middle" id="dynamic-content-wrapper" onclick="goToNewsDetail('{{ link | downcase }}')">
       <div class="large-6 medium-6 small-12 cell">
-        {% assign fallback_image = context.exports.news_details | where: "slug", news_preview.slug | first %}
+        {% assign fallback_image = context.exports.news_details | where: "slug", news.slug | first %}
         <a>
           <img src="{{ news.image.url | default: fallback_image.image | replace: ' ', '%20' }}" alt="News Image" />
         </a>
