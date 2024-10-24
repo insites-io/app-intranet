@@ -1906,3 +1906,9 @@
   .footer-linkset-large .grid-padding-x>.cell {
     padding-right: 17px;
   }
+
+  /* Disable link */
+  .disabled-link {
+    pointer-events: none;
+    cursor: default;
+  }

@@ -17,11 +17,16 @@
 <a href="/timeline" class="button-default color-main">View All</a>
 <div class="spacer x-large"></div>
 <div class="articles-container">
-  
+
   {%- for htl in homepage_timeline -%}
   <div class="article-item">
     <div>
-      <a href="/timeline/{{ htl.slug }}">
+      {% assign timelineUrl = "" %}
+      {% if htl.enable_details_page == 'true' %}
+        {% assign timelineUrl = '/timeline/' | append: htl.slug %}
+      {% endif %}
+
+      <a href="{{ timelineUrl }}" {% if htl.enable_details_page == 'false' %} class="disabled-link" {% endif %}>
         <h3>{{ htl.title }}</h3>
       </a>
     </div>

@@ -57,7 +57,7 @@
                   </ins-markdown>
                 </div>
 
-                {%- if ti.enable_details_page -%}
+                {%- if ti.enable_details_page != 'false' -%}
                 <div class="spacer"></div>
                 <a class="read-more" href="/timeline/{{ ti.slug }}">Read More</a>
                 {%- endif -%}
