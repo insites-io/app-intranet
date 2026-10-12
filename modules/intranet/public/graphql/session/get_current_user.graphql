@@ -6,7 +6,7 @@
     email
     updated_at
     created_at
-    administrator_details: profiles(profile_type: "modules/insites_core/administrator") {
+    administrator_details: profiles(profile_type: "modules/insites_crm/administrator") {
         status: property(name: "status")
     }
   }
