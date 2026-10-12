@@ -12,7 +12,7 @@ News: Details view
 {%- assign is_displayed = false -%}
 
 {%- assign is_admin = false -%}
-{% graphql data = 'modules/insites_core/sessions/current_user' %}
+{% graphql data = 'modules/insites_crm/sessions/current_user' %}
 {% if data.current_user.administrator.is_enabled == true or data.current_user.administrator.is_enabled == "true" %}
 {%- assign is_admin = true -%}
 {% endif %}
